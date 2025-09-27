@@ -1,15 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0olwcy6j7ijq"]
+[gd_scene load_steps=3 format=3 uid="uid://c4jrhcbye7n8e"]
 
-[ext_resource type="Script" uid="uid://fbc0lq4m2iy" path="res://Customer/customerSpawner.gd" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://dbxyqtfow0wb0" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://fbc0lq4m2iy" path="res://Customer/customerSpawner.gd" id="1_ig7tw"]
 
-[node name="CustomerSpawner" type="ProgressBar"]
-offset_top = 22.0
-offset_right = 22.0
-offset_bottom = 26.0
-rotation = -1.5708
-value = 60.0
-show_percentage = false
-script = ExtResource("1_glv2v")
+[node name="Main" type="Node2D"]
+script = ExtResource("1_0xm2m")
 
-[node name="SpawnTimer" type="Timer" parent="."]
+[node name="CustomerSpawner" type="Node" parent="."]
+script = ExtResource("1_ig7tw")
+
+[node name="SpawnTimer" type="Timer" parent="CustomerSpawner"]
 wait_time = 5.0
+autostart = true
+
+[node name="Counters" type="Node2D" parent="."]
+position = Vector2(2, 1)
+
+[node name="Counter1" type="Marker2D" parent="Counters"]
+position = Vector2(300, 300)
+
+[node name="Counter2" type="Marker2D" parent="Counters"]
+position = Vector2(400, 300)
+
+[node name="Counter3" type="Marker2D" parent="Counters"]
+position = Vector2(500, 300)
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(100, 300)

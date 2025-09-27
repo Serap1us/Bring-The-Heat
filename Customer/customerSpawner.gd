@@ -16,7 +16,7 @@ class_name CustomerSpawner
 
 # tracking
 var activeCustomers: Array[customerNPC] = []
-var spawnTimer: Timer
+@onready var spawnTimer: Timer = $SpawnTimer
 var nextCounterIdx: int = 0
 
 # maybe add stats for happy/angry customers
