@@ -13,6 +13,6 @@ offset_bottom = 647.0
 
 [node name="Score" type="Label" parent="Control"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Score: "
+offset_right = 71.0
+offset_bottom = 16.0
+text = "Score: 0"
