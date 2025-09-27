@@ -24,6 +24,7 @@ var currentPatience: float
 # Signals
 signal order_completed(success: bool)
 signal arrivedAtCounter
+signal order_taken(order_type: String)
 
 func _ready():
 	currentPatience = maxPatience
@@ -53,19 +54,34 @@ func _moveTowardTarget(delta):
 		atCounter = true
 		arrivedAtCounter.emit()
 		
-func takeOrder(type: String):
+## PLAYER CALLS THIS FUNCTION WHEN INTERACTING WITH CUSTOMER
+func takeOrder() -> String:
 	# customers order has been taken
-	orderType = type
-	orderTaken = true
+	if !orderTaken and atCounter and orderType != "":
+		orderTaken = true
+		order_taken.emit(orderType)
+		return orderType
+	return ""
 	
+
+func receiveFood(foodType: String) -> bool:
+	if foodType == orderType and orderTaken:
+		orderCompleted(true)
+		return true
+	else: 
+		# giving the wrong food
+		currentPatience -= 2.5
+		patienceBar.updatePatience(currentPatience)
+		return false
+
 	# do we want to stop patience drain or slow it down while they wait for food
 
-func orderCompleted(customer: customerNPC, success: bool):
+func orderCompleted(success: bool):
 	# order fullfilled (or failed)
-	order_completed.emit(customer, success)
+	order_completed.emit(self, success)
 	
 	if success:
-		print("customer sastified")
+		print("customer sastified" + orderType)
 	else:
 		_leaveAngry()
 

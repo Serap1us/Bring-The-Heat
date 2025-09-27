@@ -11,7 +11,7 @@ func _ready():
 	
 	# just for debuggin
 	$CustomerSpawner.customerArrived.connect(
-		func(customer, counterIdx): print("customer arrived at counter %d" % (counterIdx + 1))
+		func(customer, counterIdx): print("customer arrived at counter " + str(counterIdx))
 	)
 	$CustomerSpawner.customerleft.connect(
 		func(customer, happy): print("customer left, happy: %s" % happy)

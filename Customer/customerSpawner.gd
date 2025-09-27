@@ -9,7 +9,7 @@ class_name CustomerSpawner
 @export_range(0, 100) var difficulty: float = 0.0 # increases over time
 
 # counter positions
-@export var counterPositions := []
+@export var counterPositions := [] : set = _set_counter_positions
 
 # spawn position
 @export var spawnPosition: Vector2 = Vector2(20, 300)
@@ -17,29 +17,58 @@ class_name CustomerSpawner
 # tracking
 var activeCustomers: Array[customerNPC] = []
 @onready var spawnTimer: Timer = $SpawnTimer
-var nextCounterIdx: int = 0
+#var nextCounterIdx: int = 0
+var counterOccupancy: Dictionary = {}
 
 # maybe add stats for happy/angry customers
 
 # signals
-signal customerArrived(customer: customerNPC, counterIdx: int)
+signal customerArrived(customer: customerNPC, counterNode: Node)
 signal customerleft(customer: customerNPC, happy: bool)
 
 func _ready():
 	spawnTimer.wait_time = spawnInterval
 	spawnTimer.timeout.connect(_on_spawnTimer_timeout)
-	
 	spawnTimer.start()
+
+
+func _set_counter_positions(new_positions: Array):
+	counterPositions = new_positions
+	for counter in counterPositions:
+		counterOccupancy[counter] = null
 
 func _on_spawnTimer_timeout():
 	if activeCustomers.size() < maxCustomers:
 		spawnCustomer()
+
+func hasAvailableCounter() -> bool:
+	for customer in counterOccupancy.values():
+		if customer == null:
+			return true
+	return false
+	
+func getAvailableCounter() -> Node:
+	var availableCounters = []
+	for counter in counterOccupancy:
+		if counterOccupancy[counter] == null:
+			availableCounters.append(counter)
+	if availableCounters.size() > 0:
+		return availableCounters[randi() % availableCounters.size()]
+	return null
 	
 func spawnCustomer():
 	var customer = customerScene.instantiate() as customerNPC
 	
-	var counterNode = counterPositions[nextCounterIdx]
-	nextCounterIdx = (nextCounterIdx + 1) % counterPositions.size()
+	#var counterNode = counterPositions[nextCounterIdx]
+	#nextCounterIdx = (nextCounterIdx + 1) % counterPositions.size()
+	
+	var counterNode = getAvailableCounter()
+	if counterNode == null:
+		customer.queue_free()
+		return
+	
+	# mark counter as occupied
+	counterOccupancy[counterNode] = customer
 	
 	# setup the customer
 	customer.position = spawnPosition
@@ -50,23 +79,25 @@ func spawnCustomer():
 	
 	# connect the signals
 	customer.arrivedAtCounter.connect(
-		_on_customerArrived.bind(customer, nextCounterIdx - 1)
+		_on_customerArrived.bind(customer, counterNode)
 	)
-	customer.order_completed.connect(_on_customerLeft)
+	customer.order_completed.connect(_on_customerLeft.bind(counterNode))
 	
 	call_deferred("add_child", customer)
 	activeCustomers.append(customer)
 	
-func _on_customerArrived(customer: customerNPC, counterIdx: int):
-	customerArrived.emit(customer, counterIdx)
+func _on_customerArrived(customer: customerNPC, counterNode: Node):
+	customerArrived.emit(customer, counterNode)
 	
-	var orderTypes = ["burger", "fries", "pizza", "chicken"]
+	var orderTypes = ["burger", "fries", "soda", "chicken"]
 	var randomOrder = orderTypes[randi() % orderTypes.size()]
 	customer.orderType = randomOrder
 	
-func _on_customerLeft(customer: customerNPC, happy: bool):
+func _on_customerLeft(customer: customerNPC, happy: bool, counterNode: Node):
+	# free up the counter
+	counterOccupancy[counterNode] = null
+
 	activeCustomers.erase(customer)
-	
 	customerleft.emit(customer, happy)
 	
 ## maybe a difficulty increase
