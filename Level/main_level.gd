@@ -17,10 +17,11 @@ func _set_score(new_score):
 	
 	var number = Label.new()
 	number.z_index = 5
+	number.position.x = ((score_label.size.x - 131) / 2) + 117
 	number.text = str(new_score - prev_score)
 	number.label_settings = LabelSettings.new()
 	
-	number.label_settings.font_size = 22
+	number.label_settings.font_size = 16
 	number.label_settings.outline_color = "#000"
 	number.label_settings.outline_size = 1
 	
@@ -32,9 +33,10 @@ func _set_score(new_score):
 	var tween = create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(
-		number, "position:y", number.position.y - 24, 0.25
+		number, "position:y", number.position.y + 24, 0.25
 	).set_ease(Tween.EASE_OUT)
-
-
-func _physics_process(delta: float) -> void:
-	curr_score += 1
+	tween.tween_property(
+		number, "scale", Vector2.ZERO, 0.25
+	).set_ease(Tween.EASE_IN).set_delay(0.20)
+	await tween.finished
+	number.queue_free()

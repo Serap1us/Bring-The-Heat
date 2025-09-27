@@ -14,6 +14,11 @@ config/name="Bring the Heat Gamejam"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
@@ -25,5 +30,6 @@ theme/custom_font="uid://bltsd500evn5c"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
