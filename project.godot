@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[gui]
+
+theme/custom_font="uid://bltsd500evn5c"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

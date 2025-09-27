@@ -4,3 +4,15 @@
 
 [node name="MainLevel" type="Node2D"]
 script = ExtResource("1_7ireg")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1151.0
+offset_bottom = 647.0
+
+[node name="Score" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Score: "
