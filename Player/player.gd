@@ -7,6 +7,19 @@ extends CharacterBody2D
 @export var player_idx: int = 1 # player 1 = idx 1, player 2 = idx 2
 @onready var sprite = $Sprite2D
 
+@onready var all_interactions = []
+@onready var interactLabel = $"Interaction Components/InteractLabel"
+
+func _ready():
+	update_interactions()
+
+func _physics_process(delta: float) -> void:
+	get_movement_input()
+	
+	if Input.is_action_just_pressed("player" + str(player_idx) + "_interact"):
+		execute_interactions()
+	
+	
 # function to get player input for movement
 func get_movement_input():
 	var input_vector = Vector2.ZERO
@@ -69,10 +82,33 @@ func get_direction_faced(vector: Vector2) -> String:
 	
 
 
-		
+# Player interaction methods
+func _on_interaction_area_area_entered(area: Area2D) -> void:
+	all_interactions.insert(0, area)
+	update_interactions()
+
+
+func _on_interaction_area_area_exited(area: Area2D) -> void:
+	all_interactions.erase(area)
+	update_interactions()
 	
-func _physics_process(delta: float) -> void:
-	get_movement_input()
+func update_interactions():
+	if all_interactions:
+		interactLabel.text = all_interactions[0].interact_label
+	else:
+		interactLabel.text = ""
 	
-	 
+func execute_interactions():
+	if all_interactions:
+		var cur_interaction = all_interactions[0]
+		match cur_interaction.interact_type:
+			"print_text" : print(cur_interaction.interact_value)
+	
+	
+	
+	
+	
+	
+	
+	
 	

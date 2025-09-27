@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsa2yrjixdcdp"]
+
+[ext_resource type="PackedScene" uid="uid://dq8nlrjhdj7kw" path="res://Player/Player.tscn" id="1_gdg7i"]
+[ext_resource type="PackedScene" uid="uid://fuucgmhx4kd2" path="res://Game Components/Interact Area/interact_area.tscn" id="2_8rqv5"]
+
+[node name="main" type="Node2D"]
+
+[node name="Player1" parent="." instance=ExtResource("1_gdg7i")]
+position = Vector2(218, 323)
+
+[node name="Player2" parent="." instance=ExtResource("1_gdg7i")]
+position = Vector2(691, 311)
+player_idx = 2
+
+[node name="InteractArea" parent="." instance=ExtResource("2_8rqv5")]
+position = Vector2(337, 323)
+interact_label = "Interaction test"
+interact_type = "print_text"
+interact_value = "it worked"
