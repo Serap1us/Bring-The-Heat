@@ -10,6 +10,8 @@ class_name MainLevel
 @export var curr_score := 0 : set = _set_score
 @onready var score_label = $Control/Score
 
+# Character interact points
+
 func _set_score(new_score):
 	var prev_score := curr_score
 	curr_score = new_score

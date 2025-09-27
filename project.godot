@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Bring the Heat Gamejam"
-run/main_scene="uid://c4jrhcbye7n8e"
+run/main_scene="uid://bhfege3glc0ag"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -24,6 +24,10 @@ window/size/viewport_height=720
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[gui]
+
+theme/custom_font="uid://bltsd500evn5c"
 
 [input]
 
@@ -91,9 +95,6 @@ player2_interact={
 [layer_names]
 
 2d_physics/layer_2="interactions"
-[gui]
-
-theme/custom_font="uid://bltsd500evn5c"
 
 [rendering]
 
