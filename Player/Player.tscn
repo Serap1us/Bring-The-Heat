@@ -1,10 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://dq8nlrjhdj7kw"]
 
 [ext_resource type="Script" uid="uid://cm3mccbhd5b1w" path="res://Player/player.gd" id="1_q3lat"]
-[ext_resource type="Texture2D" uid="uid://bfiakxbn3glxj" path="res://icon.svg" id="2_tok1r"]
+[ext_resource type="Texture2D" uid="uid://47wqy3s5g64" path="res://Player/Player_models.png" id="2_q3lat"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ddoul"]
-size = Vector2(65, 63)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tok1r"]
+radius = 16.0
+height = 54.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q3lat"]
 radius = 63.0714
@@ -13,16 +14,28 @@ radius = 63.0714
 script = ExtResource("1_q3lat")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_tok1r")
+scale = Vector2(2, 2)
+texture = ExtResource("2_q3lat")
+flip_h = true
+hframes = 4
+
+[node name="ArrowSprite" type="Sprite2D" parent="."]
+position = Vector2(-0.924924, 1.43749)
+rotation = 3.14159
+scale = Vector2(3.02734, 2.4561)
+texture = ExtResource("2_q3lat")
+hframes = 4
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ddoul")
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_tok1r")
 
 [node name="Interaction Components" type="Node2D" parent="."]
 z_index = 1
 
 [node name="InteractionArea" type="Area2D" parent="Interaction Components"]
+visible = false
 collision_layer = 0
 collision_mask = 2
 monitorable = false

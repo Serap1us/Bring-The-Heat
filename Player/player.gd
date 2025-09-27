@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var speed: int = 250
 @export var player_idx: int = 1 # player 1 = idx 1, player 2 = idx 2
 @onready var sprite = $Sprite2D
+@onready var arrow_sprite = $ArrowSprite
 
 @onready var all_interactions = []
 @onready var interactLabel = $"Interaction Components/InteractLabel"
@@ -37,26 +38,26 @@ func get_movement_input():
 	else:
 		velocity = input_vector.normalized() * speed
 	
-	sprite.rotation = input_vector.angle()
+	#arrow_sprite.rotation = input_vector.angle()
 	
-	# Change sprite direction
+	# Change sprite arrow direction
 	if input_vector != Vector2.ZERO:
 		var direction_faced = get_direction_faced(input_vector)
 		
 		match direction_faced:
-			"right": sprite.rotation = 0
-			"down_right": sprite.rotation = PI/4
-			"down": sprite.rotation = PI/2
-			"down_left": sprite.rotation = 3*PI/4
-			"left": sprite.rotation = PI
-			"up_left": sprite.rotation = -3*PI/4
-			"up": sprite.rotation = -PI/2
-			"up_right": sprite.rotation = -PI/4
+			"right": arrow_sprite.rotation = PI
+			"down_right": arrow_sprite.rotation = -3*PI/4
+			"down": arrow_sprite.rotation = -PI/2
+			"down_left": arrow_sprite.rotation = -PI/4
+			"left": arrow_sprite.rotation = 0
+			"up_left": arrow_sprite.rotation = PI/4
+			"up": arrow_sprite.rotation = PI/2
+			"up_right": arrow_sprite.rotation = 3*PI/4
 			
 		
 	move_and_slide()
 
-# Use vectors to determine the sprite direction
+# Use vectors to determine the sprite arrow direction
 func get_direction_faced(vector: Vector2) -> String:
 	var angle = vector.angle()
 
@@ -68,7 +69,7 @@ func get_direction_faced(vector: Vector2) -> String:
 		return "down"
 	elif angle > 5*PI/8 and angle <= 7*PI/8:
 		return "down_left"
-	elif angle > 7*PI/8 and angle <= -7*PI/8:
+	elif angle > 7*PI/8 or angle <= -7*PI/8:
 		return "left"
 	elif angle > -7*PI/8 and angle <= -5*PI/8:
 		return "up_left"
@@ -77,9 +78,10 @@ func get_direction_faced(vector: Vector2) -> String:
 	elif angle > -3*PI/8 and angle <= -PI/8:
 		return "up_right"
 	else:
-		return "down"
+		return "none"
 	
 	
+
 
 
 # Player interaction methods
