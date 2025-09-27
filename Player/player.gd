@@ -42,6 +42,8 @@ func get_movement_input():
 	# Change sprite arrow direction
 	if input_vector != Vector2.ZERO:
 		var direction_faced = get_direction_faced(input_vector)
+		
+		# player facing orientation
 		var facing_left_list = ["left", "up_left", "down_left"]
 		var facing_right_list = ["right", "up_right", "down_right"]
 		
@@ -88,8 +90,6 @@ func get_direction_faced(vector: Vector2) -> String:
 	else:
 		return "none"
 	
-	
-
 
 
 # Player interaction methods

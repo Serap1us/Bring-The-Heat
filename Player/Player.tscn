@@ -35,7 +35,6 @@ shape = SubResource("CapsuleShape2D_tok1r")
 z_index = 1
 
 [node name="InteractionArea" type="Area2D" parent="Interaction Components"]
-visible = false
 collision_layer = 0
 collision_mask = 2
 monitorable = false
