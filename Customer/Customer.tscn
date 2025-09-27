@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://6hwxw3r3q6bl"]
+
+[ext_resource type="Script" uid="uid://nseje5f81lc8" path="res://Customer/customer.gd" id="1_47pxv"]
+[ext_resource type="Texture2D" uid="uid://bfiakxbn3glxj" path="res://icon.svg" id="2_k6pke"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ms251"]
+
+[node name="Customer" type="Area2D"]
+script = ExtResource("1_47pxv")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(28.5, 74.5)
+scale = Vector2(0.429687, 1.16406)
+texture = ExtResource("2_k6pke")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ms251")
+
+[node name="PatienceTimer" type="Timer" parent="."]

@@ -1,9 +1,6 @@
 extends Area2D
 class_name  customerNPC
 
-######
-# npc spawns in and goes to dedicated location
-
 # npc attributes
 @export var maxMovespeed: float = 150.00
 @export var maxPatience: float = 30.00 # 30 seconds patience
@@ -24,6 +21,7 @@ var patienceBar: ProgressBar
 # Signals
 signal orderCompleted(success: bool)
 signal arrivedAtCounter
+signal leaveAngry
 
 func ready():
 	currentPatience = maxPatience
@@ -31,21 +29,14 @@ func ready():
 	# create the patience bar
 	patienceTimer = Timer.new()
 	patienceTimer.wait_time = 1.0
-	patienceTimer.timeout.connect(_decreasePatience)
+	patienceTimer.timeout.connect(_leaveAngry)
 	add_child(patienceTimer)
-	
-func _decresePatience():
-	currentPatience -= 1
-	_updatePatienceBar()
-	
-	if currentPatience <= 0:
-		_leaveAngry()
-		
+
+func _physics_process(delta: float) -> void:
+	currentPatience = $PatienceTimer.time_left
+
 func _updatePatienceBar():
 	pass
 
-func _decreasePatience():
-	pass
-
 func _leaveAngry():
-	pass
+	leaveAngry.emit()

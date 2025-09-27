@@ -1,3 +1,9 @@
 [gd_scene format=3 uid="uid://d0olwcy6j7ijq"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="ProgressBar"]
+offset_top = 22.0
+offset_right = 22.0
+offset_bottom = 26.0
+rotation = -1.5708
+value = 60.0
+show_percentage = false
