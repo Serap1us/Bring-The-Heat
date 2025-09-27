@@ -4,12 +4,12 @@ class_name CustomerSpawner
 @export var customerScene: PackedScene = preload("res://Customer/Customer.tscn")
 
 # Spawner Settings
-@export var spawnInterval: float = 5.0
+@export var spawnInterval: float = 2.0
 @export var maxCustomers: int = 5 # max custoemrs we have in restaurant
 @export_range(0, 100) var difficulty: float = 0.0 # increases over time
 
 # counter positions
-@export var counterPositions: Array[Node2D] = []
+@export var counterPositions := []
 
 # spawn position
 @export var spawnPosition: Vector2 = Vector2(20, 300)
@@ -46,17 +46,15 @@ func spawnCustomer():
 	customer.targetPosition = counterNode.global_position
 	
 	# adjust the patience based on difficulty?
-	#customer.maxPatience = max(10.0, 30.0 - (difficulty * 0.2))
+	customer.maxPatience = randf_range(15 - (difficulty * 0.2), 15 + (difficulty * 0.2))
 	
 	# connect the signals
 	customer.arrivedAtCounter.connect(
-		func(): _on_customerArrived(customer, nextCounterIdx - 1)
+		_on_customerArrived.bind(customer, nextCounterIdx - 1)
 	)
-	customer.orderCompleted.connect(
-		func(success): _on_customerLeft(customer, success)
-	)
+	customer.order_completed.connect(_on_customerLeft)
 	
-	add_child(customer)
+	call_deferred("add_child", customer)
 	activeCustomers.append(customer)
 	
 func _on_customerArrived(customer: customerNPC, counterIdx: int):
@@ -72,7 +70,7 @@ func _on_customerLeft(customer: customerNPC, happy: bool):
 	customerleft.emit(customer, happy)
 	
 ## maybe a difficulty increase
-#func increaseDifficulty(amount: float):
-	#difficulty += amount
-	#spawnTimer.wait_time = max(1.0, spawnInterval - (difficulty * 0.05))
+func increaseDifficulty(amount: float):
+	difficulty += amount
+	spawnTimer.wait_time = max(1.0, spawnInterval - (difficulty * 0.05))
 	

@@ -13,31 +13,33 @@ class_name PatienceBar
 @export var highPatienceColor: Color = Color.GREEN
 @export var medPatienceColor: Color = Color.YELLOW
 @export var lowPatienceColor: Color = Color.RED
+
+var maxValue := 15
  
 # Make it jump when its getting critically low
 var isCritical: bool = false
 
 func _ready():
-	custom_minimum_size = Vector2(40, 8)
-
-	# Test animation
-	if OS.has_feature("editor"):  # Only run test in editor
-		_test_bar_animation()
-
-func _test_bar_animation():
-	updatePatience(100, 100) # Start full (green)
+	$ProgressBar.max_value = maxValue
+	$ProgressBar.value = maxValue
+	## Test animation
+	#if OS.has_feature("editor"):  # Only run test in editor
+		#_test_bar_animation()
+#
+#func _test_bar_animation():
+	#updatePatience(100, 100) # Start full (green)
+	#
+	## Create a tween to smoothly reduce patience
+	#var tween = create_tween()
+	#tween.tween_method(
+		#func(current_value): updatePatience(current_value, 100.0),
+		#100.0,  # from
+		#0.0,    # to
+		#5.0     # duration
+	#)
+	##tween.set_loops()  # Loop forever for testing
 	
-	# Create a tween to smoothly reduce patience
-	var tween = create_tween()
-	tween.tween_method(
-		func(current_value): updatePatience(current_value, 100.0),
-		100.0,  # from
-		0.0,    # to
-		5.0     # duration
-	)
-	#tween.set_loops()  # Loop forever for testing
-	
-func updatePatience(current: float, maxValue: float):
+func updatePatience(current: float):
 	if !progressBar:
 		return
 	

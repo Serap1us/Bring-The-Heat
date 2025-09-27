@@ -19,21 +19,16 @@ var orderType: String = ""  # "burger"
 
 ## Patience System:
 var currentPatience: float 
-var patienceBarInstance: PatienceBar
+@export var patienceBar: PatienceBar
 
 # Signals
 signal order_completed(success: bool)
 signal arrivedAtCounter
 
-func ready():
+func _ready():
 	currentPatience = maxPatience
-	
-	# create patience bar
-	patienceBarInstance = patienceBarScene.instantiate()
-	add_child(patienceBarInstance)
-	
-	patienceBarInstance.position = Vector2(-20, -40)
-	patienceBarInstance.updatePatience(currentPatience, maxPatience)
+	patienceBar.maxValue = maxPatience
+	patienceBar.updatePatience(currentPatience)
 
 func _process(delta):
 	if !atCounter:
@@ -41,7 +36,7 @@ func _process(delta):
 	else:
 		if currentPatience > 0 and !orderTaken:
 			currentPatience -= delta
-			patienceBarInstance.updatePatience(currentPatience, maxPatience)
+			patienceBar.updatePatience(currentPatience)
 			
 			if currentPatience <= 0:
 				_leaveAngry()
@@ -65,9 +60,9 @@ func takeOrder(type: String):
 	
 	# do we want to stop patience drain or slow it down while they wait for food
 
-func orderCompleted(success: bool):
+func orderCompleted(customer: customerNPC, success: bool):
 	# order fullfilled (or failed)
-	order_completed.emit(success)
+	order_completed.emit(customer, success)
 	
 	if success:
 		print("customer sastified")
@@ -75,4 +70,5 @@ func orderCompleted(success: bool):
 		_leaveAngry()
 
 func _leaveAngry():
-	pass
+	print("customer left")
+	queue_free()
