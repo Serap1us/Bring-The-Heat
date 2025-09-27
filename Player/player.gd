@@ -37,19 +37,27 @@ func get_movement_input():
 		velocity = Vector2.ZERO
 	else:
 		velocity = input_vector.normalized() * speed
-	
-	#arrow_sprite.rotation = input_vector.angle()
+
 	
 	# Change sprite arrow direction
 	if input_vector != Vector2.ZERO:
 		var direction_faced = get_direction_faced(input_vector)
+		var facing_left_list = ["left", "up_left", "down_left"]
+		var facing_right_list = ["right", "up_right", "down_right"]
 		
+		if direction_faced in facing_left_list:
+			sprite.flip_h = false
+		elif direction_faced in facing_right_list:
+			sprite.flip_h = true
+		
+		
+		# orient the arrow to the players facing direction
 		match direction_faced:
 			"right": arrow_sprite.rotation = PI
 			"down_right": arrow_sprite.rotation = -3*PI/4
 			"down": arrow_sprite.rotation = -PI/2
 			"down_left": arrow_sprite.rotation = -PI/4
-			"left": arrow_sprite.rotation = 0
+			"left": arrow_sprite.rotation = 0 
 			"up_left": arrow_sprite.rotation = PI/4
 			"up": arrow_sprite.rotation = PI/2
 			"up_right": arrow_sprite.rotation = 3*PI/4
