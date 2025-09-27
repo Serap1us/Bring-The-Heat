@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0olwcy6j7ijq"]
+
+[ext_resource type="Script" uid="uid://fbc0lq4m2iy" path="res://Customer/customerSpawner.gd" id="1_ippd4"]
+
+[node name="CustomerSpawner" type="ProgressBar"]
+offset_top = 22.0
+offset_right = 22.0
+offset_bottom = 26.0
+rotation = -1.5708
+value = 60.0
+show_percentage = false
+script = ExtResource("1_ippd4")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 5.0

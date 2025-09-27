@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://6hwxw3r3q6bl"]
+
+[ext_resource type="Script" uid="uid://nseje5f81lc8" path="res://Customer/customer.gd" id="1_47pxv"]
+[ext_resource type="Texture2D" uid="uid://ta8gm7hfy2p" path="res://Customer/Customers.png" id="2_k6pke"]
+[ext_resource type="PackedScene" uid="uid://b547oplfbisyl" path="res://Customer/Patience/patiencebar.tscn" id="3_k6pke"]
+[ext_resource type="Script" uid="uid://3ggsth3o8v18" path="res://Customer/randomsprite.gd" id="3_ms251"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ms251"]
+radius = 8.0
+height = 38.0
+
+[node name="Customer" type="Area2D" node_paths=PackedStringArray("patienceBar")]
+script = ExtResource("1_47pxv")
+patienceBar = NodePath("PatienceBar")
+
+[node name="CustomerSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -13)
+scale = Vector2(2.15625, 2.15625)
+texture = ExtResource("2_k6pke")
+hframes = 3
+vframes = 3
+region_rect = Rect2(0, 0, 32, 32)
+script = ExtResource("3_ms251")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ms251")
+
+[node name="PatienceBar" parent="." instance=ExtResource("3_k6pke")]
+offset_left = -20.0
+offset_top = -31.0
+offset_right = 20.0
+offset_bottom = -25.0
+metadata/_edit_use_anchors_ = true

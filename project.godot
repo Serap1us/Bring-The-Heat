@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Bring the Heat Gamejam"
-run/main_scene="uid://bsa2yrjixdcdp"
+run/main_scene="uid://c4jrhcbye7n8e"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
