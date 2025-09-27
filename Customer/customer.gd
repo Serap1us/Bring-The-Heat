@@ -1,5 +1,5 @@
 extends Area2D
-class_name  customerNPC
+class_name customerNPC
 
 # Scenes
 @export var patienceBarScene: PackedScene = preload("res://Customer/Patience/patiencebar.tscn")
