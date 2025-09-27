@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://757n8tp114do"]
+
+[ext_resource type="Script" uid="uid://brdpt4pydnifo" path="res://Ingredients/ingredient.gd" id="1_g6pem"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4s65"]
+
+[node name="Ingredient" type="Area2D"]
+script = ExtResource("1_g6pem")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p4s65")
