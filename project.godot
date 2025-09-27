@@ -15,6 +15,11 @@ run/main_scene="uid://c4jrhcbye7n8e"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
@@ -86,6 +91,9 @@ player2_interact={
 [layer_names]
 
 2d_physics/layer_2="interactions"
+[gui]
+
+theme/custom_font="uid://bltsd500evn5c"
 
 [rendering]
 
