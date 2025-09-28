@@ -58,7 +58,6 @@ func _physics_process(delta: float) -> void:
 	
 	#logic for when this is being thrown.
 	elif !is_following and !has_landed:
-		var move_speed = speed * ui.landing.progress_ratio
 		global_position = global_position.lerp(landing_spot, speed * delta)
 		
 		if global_position.distance_to(landing_spot) < 32:

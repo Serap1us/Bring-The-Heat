@@ -49,7 +49,7 @@ func _ready() -> void:
 		print("NEED TO ASSIGN AN OUTPUT/INPUT")
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if stored_fire != null:
 		if anim_player.current_animation != "Flaming":
 				anim_player.play("Flaming")
