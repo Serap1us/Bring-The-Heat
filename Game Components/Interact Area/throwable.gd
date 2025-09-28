@@ -66,9 +66,9 @@ func _physics_process(delta: float) -> void:
 
 
 #Inherited from Interactable. When this item has been picked up.
-func execute(player: Player):
-	if !is_picked_up and player.held_item == null:
-		follow_player(player)
+func execute(interact_player: Player):
+	if !is_picked_up and interact_player.held_item == null:
+		follow_player(interact_player)
 		
 		is_picked_up = true
 		
