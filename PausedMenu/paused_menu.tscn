@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmwyxltbq3dqp"]
+
+[ext_resource type="Script" uid="uid://8y6cirt6uptd" path="res://PausedMenu/paused_menu.gd" id="1_q68yk"]
+[ext_resource type="Shader" uid="uid://cvn23hdluitnk" path="res://PausedMenu/paused_menu.gdshader" id="2_j57rw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t3nd5"]
+shader = ExtResource("2_j57rw")
+shader_parameter/amount = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j57rw"]
+bg_color = Color(0.446003, 0.446003, 0.446003, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3nd5"]
+bg_color = Color(0.280455, 0.280455, 0.280455, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5m3nm"]
+bg_color = Color(0.318761, 0.318761, 0.318761, 1)
+
+[node name="PausedMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q68yk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_t3nd5")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.659836, 0.391499, 0.342117, 0.623529)
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/v_separation = 8
+
+[node name="PausedLabel" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 10
+theme_override_font_sizes/font_size = 48
+text = "Paused"
+
+[node name="ResumeBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource("StyleBoxFlat_j57rw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_t3nd5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5m3nm")
+text = "Resume "
+
+[node name="SettingsBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource("StyleBoxFlat_j57rw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_t3nd5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5m3nm")
+text = "Settings
+"
+
+[node name="QuitBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource("StyleBoxFlat_j57rw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_t3nd5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5m3nm")
+text = "Quit"
+
+[connection signal="pressed" from="GridContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]
+[connection signal="pressed" from="GridContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="GridContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
