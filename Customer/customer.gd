@@ -1,9 +1,10 @@
-extends Area2D
+#extends Area2D
+extends Interactable
 class_name customerNPC
 
 # Scenes
 @export var patienceBarScene: PackedScene = preload("res://Customer/Patience/patiencebar.tscn")
-
+@export var orderBubbleScene: PackedScene = preload("res://Customer/Ordering/OrderBubble.tscn")
 ######
 # npc attributes
 @export var maxMovespeed: float = 150.00
@@ -20,6 +21,7 @@ var orderType: String = ""  # "burger"
 ## Patience System:
 var currentPatience: float 
 @export var patienceBar: PatienceBar
+@export var order_bubble: OrderBubble
 
 # Signals
 signal order_completed(success: bool)
@@ -27,6 +29,11 @@ signal arrivedAtCounter
 signal order_taken(order_type: String)
 
 func _ready():
+	super._ready()
+	
+	interact_label = "Take Order"
+	interact_type = "customer"
+	
 	currentPatience = maxPatience
 	patienceBar.maxValue = maxPatience
 	patienceBar.updatePatience(currentPatience)
@@ -35,7 +42,7 @@ func _process(delta):
 	if !atCounter:
 		_moveTowardTarget(delta)
 	else:
-		if currentPatience > 0 and !orderTaken:
+		if currentPatience > 0:
 			currentPatience -= delta
 			patienceBar.updatePatience(currentPatience)
 			
@@ -53,7 +60,14 @@ func _moveTowardTarget(delta):
 	if global_position.distance_to(targetPosition) < 5.0:
 		atCounter = true
 		arrivedAtCounter.emit()
-		
+
+func execute(player: Player):
+	if atCounter and !orderTaken and orderType != "":
+		var order = takeOrder()
+		if order != "":
+			order_bubble.showOrder(orderType)
+			interact_label = "Waiting for " + orderType
+
 ## PLAYER CALLS THIS FUNCTION WHEN INTERACTING WITH CUSTOMER
 func takeOrder() -> String:
 	# customers order has been taken

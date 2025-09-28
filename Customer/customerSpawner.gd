@@ -90,8 +90,7 @@ func _on_customerArrived(customer: customerNPC, counterNode: Node):
 	customerArrived.emit(customer, counterNode)
 	
 	var orderTypes = ["burger", "fries", "soda", "chicken"]
-	var randomOrder = orderTypes[randi() % orderTypes.size()]
-	customer.orderType = randomOrder
+	customer.orderType = orderTypes.pick_random()
 	
 func _on_customerLeft(customer: customerNPC, happy: bool, counterNode: Node):
 	# free up the counter

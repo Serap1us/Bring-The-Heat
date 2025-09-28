@@ -1,18 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://6hwxw3r3q6bl"]
+[gd_scene load_steps=7 format=3 uid="uid://6hwxw3r3q6bl"]
 
 [ext_resource type="Script" uid="uid://nseje5f81lc8" path="res://Customer/customer.gd" id="1_47pxv"]
 [ext_resource type="Texture2D" uid="uid://ta8gm7hfy2p" path="res://Customer/Customers.png" id="2_k6pke"]
 [ext_resource type="PackedScene" uid="uid://b547oplfbisyl" path="res://Customer/Patience/patiencebar.tscn" id="3_k6pke"]
 [ext_resource type="Script" uid="uid://3ggsth3o8v18" path="res://Customer/randomsprite.gd" id="3_ms251"]
+[ext_resource type="PackedScene" uid="uid://dk428o3rdd50" path="res://Customer/Ordering/OrderBubble.tscn" id="5_i5y8d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ms251"]
 radius = 4.66667
 height = 22.6667
 
-[node name="Customer" type="Area2D" node_paths=PackedStringArray("patienceBar")]
+[node name="Customer" type="Area2D" node_paths=PackedStringArray("patienceBar", "order_bubble")]
 scale = Vector2(4, 4)
+collision_layer = 2
 script = ExtResource("1_47pxv")
 patienceBar = NodePath("PatienceBar")
+order_bubble = NodePath("OrderBubble")
 
 [node name="CustomerSprite" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -34,3 +37,7 @@ offset_right = 32.0
 offset_bottom = -17.25
 scale = Vector2(0.4, 0.4)
 metadata/_edit_use_anchors_ = true
+
+[node name="OrderBubble" parent="." instance=ExtResource("5_i5y8d")]
+visible = false
+position = Vector2(-8.5, -14.25)
