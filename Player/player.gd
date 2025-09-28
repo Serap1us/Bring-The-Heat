@@ -144,7 +144,7 @@ func hasFood() -> bool:
 
 func getCurrentFood() -> Ingredient:
 	if held_item is Ingredient:
-		return held_item.interact_label
+		return held_item.interact_label.capitalize()
 	return null
 
 func removeFood():

@@ -4,17 +4,19 @@ class_name Ingredient
 enum Ingredients {
 	CHEESE,
 	TOMATO,
-	RAW_CHICKEN,
+	CHICKEN,
 	SODA,
 	BREAD,
 	VEGETABLE
 	}
 
 
-@export var ingredient: Ingredients
+@export var ingredient: Ingredients : set = set_ingredient
 @onready var ingredient_sprite = $Sprite2D
 
-func set_ingredient(new_ingredient: String):
-	ingredient = Ingredients.find_key(new_ingredient.to_upper())
-	interact_label = new_ingredient
+func _ready() -> void:
+	set_ingredient(Ingredients.CHICKEN)
+func set_ingredient(new_ingredient: Ingredients):
+	ingredient = new_ingredient
+	interact_label = Ingredients.keys()[ingredient]
 	ingredient_sprite.frame = ingredient
