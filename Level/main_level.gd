@@ -3,10 +3,18 @@ class_name MainLevel
 
 @export var curr_score := 0 : set = _set_score
 @onready var score_label = $Control/Score
+@onready var asp: AudioStreamPlayer = $music
+
+# game music
+var volume = -15
 
 func _ready() -> void:
 	$CustomerSpawner.counterPositions = $Tables.get_children() as Array[Marker2D]
 	$CustomerSpawner.spawnPosition = $SpawnPoint.position
+	
+	# Music
+	AudioServer.set_bus_volume_db(0, volume)
+	asp.play()
 
 func _set_score(new_score):
 	var prev_score := curr_score
@@ -38,3 +46,7 @@ func _set_score(new_score):
 	).set_ease(Tween.EASE_IN).set_delay(0.20)
 	await tween.finished
 	number.queue_free()
+
+
+func _on_audio_stream_player_finished() -> void:
+	asp.play()

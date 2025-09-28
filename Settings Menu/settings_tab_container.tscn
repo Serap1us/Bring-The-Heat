@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdoett1uukl8p"]
+[gd_scene load_steps=5 format=3 uid="uid://bdoett1uukl8p"]
 
 [ext_resource type="PackedScene" uid="uid://b2rys5vtryc3f" path="res://Settings Menu/hotkey_rebind_button.tscn" id="1_gxcjs"]
+[ext_resource type="PackedScene" uid="uid://c52etdi7vml10" path="res://Settings Menu/audio_slider_settings.tscn" id="1_h5xop"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d0tb3"]
 
@@ -49,11 +50,28 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer/ScrollContainer"]
 layout_mode = 2
+theme_override_constants/separation = 64
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 32
 theme_override_styles/separator = SubResource("StyleBoxEmpty_d0tb3")
+
+[node name="Label" type="Label" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Volume Settings:"
+
+[node name="Audio_Slider_Settings" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_h5xop")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="Audio_Slider_Settings2" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_h5xop")]
+layout_mode = 2
+
+[node name="Audio_Slider_Settings3" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_h5xop")]
+layout_mode = 2
+bus_name = "Sfx"
 
 [node name="HSeparator2" type="HSeparator" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -94,7 +112,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 48
-text = "Player One Controls"
+text = "Player One Controls:"
 
 [node name="Hotkey_Rebind_Button3" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_gxcjs")]
 layout_mode = 2
@@ -124,7 +142,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 48
-text = "Player Two Controls"
+text = "Player Two Controls:"
 
 [node name="Hotkey_Rebind_Button9" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_gxcjs")]
 layout_mode = 2
