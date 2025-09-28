@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://m2ts7wangfyu" path="res://Level/main_level.gd" id="1_7ireg"]
 [ext_resource type="TileSet" uid="uid://bhd7fvldvvd8p" path="res://Level/Environment.tres" id="2_1wy1g"]
+[ext_resource type="PackedScene" uid="uid://hmu6hff6guh7" path="res://Level/customer_spawner.tscn" id="2_t065x"]
 [ext_resource type="PackedScene" uid="uid://dq8nlrjhdj7kw" path="res://Player/Player.tscn" id="3_vad1a"]
 [ext_resource type="PackedScene" uid="uid://cmwyxltbq3dqp" path="res://PausedMenu/paused_menu.tscn" id="5_romof"]
 
@@ -12,6 +13,8 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="MainLevel" type="Node2D"]
 script = ExtResource("1_7ireg")
+
+[node name="CustomerSpawner" parent="." instance=ExtResource("2_t065x")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(5, 5)
@@ -29,6 +32,80 @@ position = Vector2(94, 118)
 [node name="Player2" parent="." instance=ExtResource("3_vad1a")]
 position = Vector2(1043, 157)
 player_idx = 2
+
+[node name="Tables" type="Node2D" parent="."]
+
+[node name="Counter1" type="Marker2D" parent="Tables"]
+position = Vector2(528, 64)
+
+[node name="Counter2" type="Marker2D" parent="Tables"]
+position = Vector2(528, 144)
+
+[node name="Counter3" type="Marker2D" parent="Tables"]
+position = Vector2(528, 224)
+
+[node name="Counter4" type="Marker2D" parent="Tables"]
+position = Vector2(528, 304)
+
+[node name="Counter5" type="Marker2D" parent="Tables"]
+position = Vector2(528, 384)
+
+[node name="Counter6" type="Marker2D" parent="Tables"]
+position = Vector2(528, 464)
+
+[node name="Counter7" type="Marker2D" parent="Tables"]
+position = Vector2(528, 544)
+
+[node name="Counter8" type="Marker2D" parent="Tables"]
+position = Vector2(464, 624)
+
+[node name="Counter9" type="Marker2D" parent="Tables"]
+position = Vector2(384, 624)
+
+[node name="Counter10" type="Marker2D" parent="Tables"]
+position = Vector2(304, 624)
+
+[node name="Counter11" type="Marker2D" parent="Tables"]
+position = Vector2(224, 624)
+
+[node name="Counter12" type="Marker2D" parent="Tables"]
+position = Vector2(144, 624)
+
+[node name="Counter13" type="Marker2D" parent="Tables"]
+position = Vector2(743, 64)
+
+[node name="Counter14" type="Marker2D" parent="Tables"]
+position = Vector2(743, 144)
+
+[node name="Counter15" type="Marker2D" parent="Tables"]
+position = Vector2(743, 224)
+
+[node name="Counter16" type="Marker2D" parent="Tables"]
+position = Vector2(743, 304)
+
+[node name="Counter17" type="Marker2D" parent="Tables"]
+position = Vector2(743, 384)
+
+[node name="Counter18" type="Marker2D" parent="Tables"]
+position = Vector2(743, 464)
+
+[node name="Counter19" type="Marker2D" parent="Tables"]
+position = Vector2(743, 544)
+
+[node name="Counter20" type="Marker2D" parent="Tables"]
+position = Vector2(1136, 624)
+
+[node name="Counter21" type="Marker2D" parent="Tables"]
+position = Vector2(1056, 624)
+
+[node name="Counter22" type="Marker2D" parent="Tables"]
+position = Vector2(976, 624)
+
+[node name="Counter23" type="Marker2D" parent="Tables"]
+position = Vector2(896, 624)
+
+[node name="Counter24" type="Marker2D" parent="Tables"]
+position = Vector2(816, 624)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

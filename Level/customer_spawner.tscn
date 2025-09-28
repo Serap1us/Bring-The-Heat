@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://hmu6hff6guh7"]
+
+[ext_resource type="Script" uid="uid://fbc0lq4m2iy" path="res://Customer/customerSpawner.gd" id="1_jjsxv"]
+
+[node name="CustomerSpawner" type="Node"]
+script = ExtResource("1_jjsxv")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
