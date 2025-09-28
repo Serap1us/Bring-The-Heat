@@ -1,4 +1,10 @@
-[gd_scene format=3 uid="uid://bdoett1uukl8p"]
+[gd_scene load_steps=4 format=3 uid="uid://bdoett1uukl8p"]
+
+[ext_resource type="PackedScene" uid="uid://b2rys5vtryc3f" path="res://Settings Menu/hotkey_rebind_button.tscn" id="1_gxcjs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d0tb3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gxcjs"]
 
 [node name="Settings_Tab_Container" type="Control"]
 layout_mode = 3
@@ -20,9 +26,10 @@ offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 0
+current_tab = 1
 
 [node name="Sound" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -38,33 +45,23 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Sound/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 64
-alignment = 1
 
-[node name="Label1" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer/ScrollContainer"]
 layout_mode = 2
-text = "Sound 1"
 
-[node name="Label2" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-text = "Sound 2"
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxEmpty_d0tb3")
 
-[node name="Label3" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-text = "Sound 3"
-
-[node name="Label4" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Sound 4"
-
-[node name="Label5" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Sound 5"
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxEmpty_gxcjs")
 
 [node name="Controls" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -80,27 +77,80 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Controls/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls/MarginContainer/ScrollContainer"]
 layout_mode = 2
 theme_override_constants/separation = 64
-alignment = 1
 
-[node name="Label1" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-text = "Control 1"
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_d0tb3")
 
-[node name="Label2" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer"]
+[node name="Player1_Controls" type="Label" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-text = "Control 2"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 48
+text = "Player One Controls"
 
-[node name="Label3" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer"]
+[node name="Hotkey_Rebind_Button3" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_gxcjs")]
 layout_mode = 2
-text = "Control 3"
+action_name = "player1_up"
 
-[node name="Label4" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer"]
+[node name="Hotkey_Rebind_Button" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_gxcjs")]
 layout_mode = 2
-text = "Control 4"
 
-[node name="Label5" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer"]
+[node name="Hotkey_Rebind_Button4" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_gxcjs")]
 layout_mode = 2
-text = "Control 5"
+action_name = "player1_down"
+
+[node name="Hotkey_Rebind_Button2" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_gxcjs")]
+layout_mode = 2
+action_name = "player1_right"
+
+[node name="Hotkey_Rebind_Button5" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_gxcjs")]
+layout_mode = 2
+action_name = "player1_interact"
+
+[node name="Hotkey_Rebind_Button6" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_gxcjs")]
+layout_mode = 2
+action_name = "player1_rotate"
+
+[node name="Player2_Controls2" type="Label" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 48
+text = "Player Two Controls"
+
+[node name="Hotkey_Rebind_Button9" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_gxcjs")]
+layout_mode = 2
+action_name = "player2_up"
+
+[node name="Hotkey_Rebind_Button7" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_gxcjs")]
+layout_mode = 2
+action_name = "player2_left"
+
+[node name="Hotkey_Rebind_Button10" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_gxcjs")]
+layout_mode = 2
+action_name = "player2_down"
+
+[node name="Hotkey_Rebind_Button8" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_gxcjs")]
+layout_mode = 2
+action_name = "player2_right"
+
+[node name="Hotkey_Rebind_Button11" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_gxcjs")]
+layout_mode = 2
+action_name = "player2_interact"
+
+[node name="Hotkey_Rebind_Button12" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_gxcjs")]
+layout_mode = 2
+action_name = "player2_rotate"
+
+[node name="HSeparator2" type="HSeparator" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_gxcjs")

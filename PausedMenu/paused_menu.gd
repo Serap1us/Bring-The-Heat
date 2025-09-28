@@ -26,7 +26,7 @@ func _on_quit_btn_pressed() -> void:
 
 
 
-# Settings 
+# Settings for paused menu
 func _ready():
 	handle_connecting_signals()
 	
