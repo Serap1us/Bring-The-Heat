@@ -11,6 +11,7 @@ func _ready() -> void:
 func _set_score(new_score):
 	var prev_score := curr_score
 	curr_score = new_score
+	$CustomerSpawner.changeDifficulty(get_difficulty())
 	score_label.text = "Score: " + str(curr_score)
 	
 	var number = Label.new()
@@ -39,6 +40,12 @@ func _set_score(new_score):
 	await tween.finished
 	number.queue_free()
 
+
+func get_difficulty() -> float:
+	var steepness := 0.000075
+
+	var difficulty := 1.0 + curr_score * steepness
+	return difficulty
 
 ## Pause menu
 #@onready var pause_menu = $PauseMenu

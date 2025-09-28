@@ -4,9 +4,9 @@ class_name CustomerSpawner
 @export var customerScene: PackedScene = preload("res://Customer/Customer.tscn")
 
 # Spawner Settings
-@export var spawnInterval: float = 5.0
-@export var maxCustomers: int = 5 # max custoemrs we have in restaurant
-@export_range(0, 100) var difficulty: float = 0.0 # increases over time
+@export var spawnInterval: float = 10
+@export var maxCustomers: int = 5 # max customers we can have in restaurant
+@export var difficulty: float = 1.0 # increases over time
 
 # counter positions
 @export var counterPositions := [] : set = _set_counter_positions
@@ -20,8 +20,6 @@ var activeCustomers: Array[customerNPC] = []
 #var nextCounterIdx: int = 0
 var counterOccupancy: Dictionary = {}
 
-# maybe add stats for happy/angry customers
-
 # signals
 signal customerArrived(customer: customerNPC, counterNode: Node)
 signal customerleft(customer: customerNPC, happy: bool)
@@ -29,7 +27,7 @@ signal customerleft(customer: customerNPC, happy: bool)
 func _ready():
 	spawnTimer.wait_time = spawnInterval
 	spawnTimer.timeout.connect(_on_spawnTimer_timeout)
-	spawnTimer.start()
+	spawnTimer.start(spawnInterval)
 
 
 func _set_counter_positions(new_positions: Array):
@@ -74,8 +72,11 @@ func spawnCustomer():
 	customer.position = spawnPosition
 	customer.targetPosition = counterNode.global_position
 	
-	# adjust the patience based on difficulty?
-	customer.maxPatience = randf_range(15 - (difficulty * 0.2), 15 + (difficulty * 0.2))
+	# adjust the patience based on difficulty
+	customer.maxPatience = randf_range(
+		max(5, (12.5 / difficulty)),
+		max(7.5, (17.5 / difficulty))
+	)
 	
 	# connect the signals
 	customer.arrivedAtCounter.connect(
@@ -85,7 +86,9 @@ func spawnCustomer():
 	
 	call_deferred("add_child", customer)
 	activeCustomers.append(customer)
-	
+	spawnTimer.start(spawnInterval)
+
+
 func _on_customerArrived(customer: customerNPC, counterNode: Node):
 	customerArrived.emit(customer, counterNode)
 	
@@ -96,12 +99,11 @@ func _on_customerArrived(customer: customerNPC, counterNode: Node):
 func _on_customerLeft(customer: customerNPC, happy: bool, counterNode: Node):
 	# free up the counter
 	counterOccupancy[counterNode] = null
-
 	activeCustomers.erase(customer)
 	customerleft.emit(customer, happy)
-	
-## maybe a difficulty increase
-func increaseDifficulty(amount: float):
-	difficulty += amount
-	spawnTimer.wait_time = max(1.0, spawnInterval - (difficulty * 0.05))
-	
+
+
+func changeDifficulty(amount: float):
+	difficulty = amount
+	maxCustomers = roundi(maxCustomers * amount)
+	spawnInterval /= difficulty

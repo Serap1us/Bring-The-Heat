@@ -7,4 +7,5 @@ script = ExtResource("1_jjsxv")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 5.0
+one_shot = true
 autostart = true
