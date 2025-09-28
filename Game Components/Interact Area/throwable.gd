@@ -2,9 +2,8 @@ class_name Throwable extends Interactable
 
 @export var ui: throwableUI
 
-@export var throw_val: float = 3
-
-@export var speed: float = 2.6
+@export var throw_val: float = 1.6
+@export var speed: float = 2
 
 
 var is_picked_up: bool = false
@@ -67,8 +66,6 @@ func execute(player: Player):
 	if !is_picked_up:
 		follow_player(player)
 		
-		player.set_held_item(self)
-		
 		is_picked_up = true
 		
 		close_area()
@@ -83,11 +80,15 @@ func execute(player: Player):
 func follow_player(player: Player):
 	self.player = player
 	
+	player.set_held_item(self)
+	
 	is_following = true
 
 
-##Unattach from player.d
+##Unattach from player.
 func unfollow_player():
+	player.set_held_item(null)
+	
 	self.player = null
 	
 	#turn the area2D back on. Quickly move it so the player registers it as entering its area again.
@@ -107,8 +108,6 @@ func charge_throw():
 		ui.landing.progress_ratio += throw_val * get_process_delta_time()
 		
 		ui.prog_bar.value = ui.landing.progress_ratio
-		
-		print("Charging")
 	else:
 		ui.prog_bar.value -= throw_val
 		
@@ -118,9 +117,10 @@ func charge_throw():
 
 
 func throw():
-	landing_spot = ui.landing.global_position + Vector2(0, -16) + (player.dir * 128)
+	landing_spot = ui.landing.global_position + Vector2(0, -16)
 	
-	print(position, landing_spot)
+	if ui.landing.progress_ratio > 0.75: 
+		landing_spot += (player.dir * 192)
 	
 	unfollow_player()
 	

@@ -17,6 +17,9 @@ extends CharacterBody2D
 var dir: Vector2
 
 func _ready():
+	if player_idx == 2:
+		sprite.frame = 1
+	
 	update_interactions()
 
 func _physics_process(delta: float) -> void:
