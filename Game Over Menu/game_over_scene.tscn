@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6vk2gdc6hdlt"]
+
+[ext_resource type="Script" uid="uid://juif3buh60ap" path="res://Game Over Menu/game_over_scene.gd" id="1_vod5p"]
+
+[node name="GameOverScene" type="CanvasLayer"]
+script = ExtResource("1_vod5p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.878166, 0.662568, 7.70092e-07, 1)
+
+[node name="ScoreLbl" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.5
+offset_top = -103.0
+offset_right = 27.5
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Score: "
+
+[node name="GameOverLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.5
+offset_top = -10.0
+offset_right = 42.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 72
+text = "Game Over"
+
+[node name="MainMenuBtn" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = 191.0
+offset_right = 84.0
+offset_bottom = 239.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Main Menu"
+
+[node name="RestartBtn" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.5
+offset_top = 82.0
+offset_right = 59.5
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 44
+text = "Restart
+"
+
+[connection signal="pressed" from="MainMenuBtn" to="." method="_on_main_menu_btn_pressed"]
+[connection signal="pressed" from="RestartBtn" to="." method="_on_restart_btn_pressed"]
