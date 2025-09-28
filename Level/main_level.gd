@@ -1,16 +1,12 @@
 extends Node2D
 class_name MainLevel
 
-# Array of Arrray containing seat coordinates and availability
-# [Vector2, bool]
-@onready var seat_availability := [
-	[Vector2(0,0), false],
-]
-
 @export var curr_score := 0 : set = _set_score
 @onready var score_label = $Control/Score
 
-# Character interact points
+func _ready() -> void:
+	$CustomerSpawner.counterPositions = $Tables.get_children() as Array[Marker2D]
+	$CustomerSpawner.spawnPosition = $SpawnPoint
 
 func _set_score(new_score):
 	var prev_score := curr_score

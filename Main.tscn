@@ -1,17 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4jrhcbye7n8e"]
+[gd_scene load_steps=3 format=3 uid="uid://ck7nmsolwbbvm"]
 
-[ext_resource type="Script" uid="uid://dbxyqtfow0wb0" path="res://main.gd" id="1_0xm2m"]
-[ext_resource type="Script" uid="uid://fbc0lq4m2iy" path="res://Customer/customerSpawner.gd" id="1_ig7tw"]
+[ext_resource type="Script" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://hmu6hff6guh7" path="res://Level/customer_spawner.tscn" id="2_uu6xs"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0xm2m")
 
-[node name="CustomerSpawner" type="Node" parent="."]
-script = ExtResource("1_ig7tw")
-
-[node name="SpawnTimer" type="Timer" parent="CustomerSpawner"]
-wait_time = 5.0
-autostart = true
+[node name="CustomerSpawner" parent="." instance=ExtResource("2_uu6xs")]
 
 [node name="Counters" type="Node2D" parent="."]
 position = Vector2(2, 1)
