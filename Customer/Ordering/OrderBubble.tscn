@@ -25,4 +25,3 @@ frame = 5
 
 [node name="OrderTimer" type="Timer" parent="."]
 wait_time = 2.0
-autostart = true

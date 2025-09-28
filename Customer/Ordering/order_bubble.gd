@@ -17,7 +17,7 @@ var currentIdx: int = 0
 @onready var orderTimer = $OrderTimer
 
 func _ready():
-	pass
+	orderTimer.timeout.connect(_nextOrder)
 
 func showOrder(orderTypes: Array):
 	#print("your food is ready" + orderType)
@@ -44,7 +44,8 @@ func showOrder(orderTypes: Array):
 func cycleOrders():
 	if currentOrders.size() <= 1:
 		return
-	orderTimer.timeout.connect(_nextOrder)
+	#orderTimer.timeout.connect(_nextOrder)
+	orderTimer.start()
 
 func _nextOrder():
 	currentIdx = (currentIdx + 1) % currentOrders.size()
