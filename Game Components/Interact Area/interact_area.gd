@@ -15,7 +15,7 @@ func _ready() -> void:
 
 
 ##A blank function. Will be overwitten by anything that interacts with this.
-func execute(player: Player):
+func execute(interact_player: Player):
 	print("Interacting with ", self, " If you are seeing this then this function has not been overwritten.")
 
 

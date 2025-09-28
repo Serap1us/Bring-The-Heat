@@ -96,11 +96,7 @@ func _on_customerArrived(customer: customerNPC, counterNode: Node):
 	var orders = []
 	#customer.orderType = orderTypes.pick_random()
 	
-	var numOrders = 1
-	### difficulty 2 (CHANGE THIS TO PROPERTY DIFFICULTY LATER)
-	var difficulty = 2
-	if difficulty > 1:
-		numOrders = randi() % 2 + 1
+	var numOrders = randi_range(1, roundi(difficulty))
 	
 	# add random orders
 	for i in range(numOrders):

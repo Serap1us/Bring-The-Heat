@@ -22,7 +22,7 @@ func _ready():
 	
 	update_interactions()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	get_movement_input()
 	
 	if Input.is_action_just_pressed("player" + str(player_idx) + "_interact"):
@@ -142,6 +142,15 @@ func execute_interactions():
 	
 func set_held_item(item):
 	held_item = item
+
+func hasFood() -> bool:
+	return held_item is Ingredient
+
+func getCurrentFood() -> Ingredient:
+	if held_item is Ingredient:
+		return held_item as Ingredient
+	return null
+	
 	
 	
 	

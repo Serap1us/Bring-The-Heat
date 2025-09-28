@@ -14,7 +14,7 @@ class_name PatienceBar
 @export var medPatienceColor: Color = Color.YELLOW
 @export var lowPatienceColor: Color = Color.RED
 
-var maxValue := 15
+var maxValue := 15.0
  
 # Make it jump when its getting critically low
 var isCritical: bool = false

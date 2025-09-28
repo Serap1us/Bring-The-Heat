@@ -76,8 +76,8 @@ func execute(interact_player: Player):
 
 
 ##Parent this to a player
-func follow_player(player: Player):
-	self.player = player
+func follow_player(new_player: Player):
+	self.player = new_player
 	
 	player.set_held_item(self)
 	
