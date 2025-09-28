@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddtxe2h1hc1ry"]
+[gd_scene load_steps=8 format=3 uid="uid://ct15kknq873di"]
 
 [ext_resource type="Script" uid="uid://bdr1daqohe23x" path="res://Game Components/Interact Area/Appliance/appliance.gd" id="1_suo1g"]
 [ext_resource type="Texture2D" uid="uid://gwl2b6agrufo" path="res://Game Components/Interact Area/Appliance/Appliances.png" id="2_ocoqg"]
@@ -71,7 +71,7 @@ anim_player = NodePath("AnimationPlayer")
 pop_out_point = NodePath("Pop out")
 cook_point = NodePath("Cook Point")
 cooking_timer = NodePath("Cooking Timer")
-cooking_time = 10.0
+cooking_time = 2.5
 interact_label = "Stove"
 
 [node name="Appliances" type="Sprite2D" parent="."]

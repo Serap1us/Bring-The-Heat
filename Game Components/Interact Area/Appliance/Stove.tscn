@@ -71,7 +71,7 @@ anim_player = NodePath("AnimationPlayer")
 pop_out_point = NodePath("Pop out")
 cook_point = NodePath("Cook Point")
 cooking_timer = NodePath("Cooking Timer")
-cooking_time = 10.0
+cooking_time = 2.5
 interact_label = "Stove"
 
 [node name="Appliances" type="Sprite2D" parent="."]

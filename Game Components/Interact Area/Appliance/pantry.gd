@@ -30,11 +30,14 @@ var ingredient_scene = preload("res://Ingredients/Ingredient.tscn")
 
 func _ready() -> void:
 	$StorePoint/Sprite2D.frame = stored_food
+	interact_label = Ingredients.keys()[stored_food]
 
 
 func execute(player: Player):
 	if !player.held_item:
 		var spawn_ingredient : Ingredient = ingredient_scene.instantiate()
+		spawn_ingredient.global_position = pop_out_point.global_position
+		spawn_ingredient.scale = Vector2(0.75, 0.75)
 		spawn_ingredient.set_ingredient(stored_food)
-		spawn_ingredient.global_position = pop_out_point.position
-		set_deferred("add_child", spawn_ingredient)
+		get_parent().add_child(spawn_ingredient)
+		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bhfege3glc0ag"]
+[gd_scene load_steps=13 format=4 uid="uid://bhfege3glc0ag"]
 
 [ext_resource type="Script" uid="uid://m2ts7wangfyu" path="res://Level/main_level.gd" id="1_7ireg"]
 [ext_resource type="TileSet" uid="uid://bhd7fvldvvd8p" path="res://Level/Environment.tres" id="2_1wy1g"]
@@ -8,8 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cmwyxltbq3dqp" path="res://PausedMenu/paused_menu.tscn" id="5_romof"]
 [ext_resource type="AudioStream" uid="uid://b8shea7s114u2" path="res://Music/GameMusic.wav" id="7_8vdnm"]
 [ext_resource type="PackedScene" uid="uid://b4a0pp54jar7v" path="res://Game Components/Interact Area/Appliance/Stove.tscn" id="8_cv6sc"]
-[ext_resource type="PackedScene" uid="uid://c3etlgged6hta" path="res://Game Components/Interact Area/Appliance/SodaMachine.tscn" id="9_7gvd8"]
-[ext_resource type="PackedScene" uid="uid://ddtxe2h1hc1ry" path="res://Game Components/Interact Area/Appliance/Oven.tscn" id="10_m5tu5"]
+[ext_resource type="PackedScene" path="res://Game Components/Interact Area/Appliance/SodaMachine.tscn" id="9_7gvd8"]
+[ext_resource type="PackedScene" uid="uid://ct15kknq873di" path="res://Game Components/Interact Area/Appliance/Oven.tscn" id="10_m5tu5"]
+[ext_resource type="PackedScene" uid="uid://bcu3t346uu4rx" path="res://Game Components/Interact Area/Appliance/Pantry.tscn" id="11_f68k2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vad1a"]
 font = ExtResource("5_hyf1s")
@@ -131,18 +132,40 @@ position = Vector2(128, 120)
 collision_layer = 3
 
 [node name="SodaMachine" parent="." instance=ExtResource("9_7gvd8")]
-position = Vector2(901, 110)
+position = Vector2(957, 109)
 collision_layer = 3
 
 [node name="Oven" parent="." instance=ExtResource("10_m5tu5")]
-position = Vector2(1035, 119)
+position = Vector2(1102, 109)
 collision_layer = 3
 
 [node name="Player" parent="." instance=ExtResource("3_vad1a")]
-position = Vector2(240, 311)
+position = Vector2(304, 307)
 
 [node name="Player2" parent="." instance=ExtResource("3_vad1a")]
-position = Vector2(1043, 187)
+position = Vector2(937, 304)
 player_idx = 2
+
+[node name="Pantry" parent="." instance=ExtResource("11_f68k2")]
+position = Vector2(240, 117)
+
+[node name="Pantry2" parent="." instance=ExtResource("11_f68k2")]
+position = Vector2(344, 117)
+stored_food = 1
+
+[node name="Pantry3" parent="." instance=ExtResource("11_f68k2")]
+position = Vector2(120, 357)
+rotation = -1.5708
+stored_food = 4
+
+[node name="Pantry4" parent="." instance=ExtResource("11_f68k2")]
+position = Vector2(1160, 310)
+rotation = 1.5708
+stored_food = 2
+
+[node name="Pantry5" parent="." instance=ExtResource("11_f68k2")]
+position = Vector2(1160, 434)
+rotation = 1.5708
+stored_food = 5
 
 [connection signal="finished" from="music" to="." method="_on_audio_stream_player_finished"]

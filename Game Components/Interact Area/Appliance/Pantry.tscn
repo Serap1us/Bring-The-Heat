@@ -16,19 +16,22 @@ pop_out_point = NodePath("Pop out")
 cook_point = NodePath("StorePoint")
 
 [node name="Appliances" type="Sprite2D" parent="."]
-position = Vector2(0, -8)
+position = Vector2(0, -4.76837e-07)
 texture = ExtResource("2_lmcwe")
 
 [node name="Pop out" type="Marker2D" parent="."]
 position = Vector2(0, 19.2)
 
 [node name="StorePoint" type="Marker2D" parent="."]
-position = Vector2(0, -7.8)
+position = Vector2(0, -7.45058e-07)
 
 [node name="Sprite2D" type="Sprite2D" parent="StorePoint"]
-position = Vector2(0.4, -3.4)
+position = Vector2(0.4, -2.2)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("3_oqvx8")
 hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-0.2, 0)
 shape = SubResource("CircleShape2D_y8u47")
