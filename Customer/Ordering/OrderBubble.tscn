@@ -22,3 +22,7 @@ texture = ExtResource("2_5xihs")
 offset = Vector2(0, -4.06349)
 hframes = 6
 frame = 5
+
+[node name="OrderTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true

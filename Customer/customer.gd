@@ -16,7 +16,8 @@ var targetPosition: Vector2
 
 ## What am I ordering?
 var orderTaken: bool = false
-var orderType: String = ""  # "burger"
+#var orderType: String = ""  # "burger"
+var orderType: Array = []  # ["burger", "fries"]
 
 ## Patience System:
 var currentPatience: float 
@@ -61,26 +62,44 @@ func _moveTowardTarget(delta):
 		atCounter = true
 		arrivedAtCounter.emit()
 
+#func execute(player: Player):
+	#if atCounter and !orderTaken and orderType != "":
+		#var order = takeOrder()
+		#if order != "":
+			#order_bubble.showOrder(orderType)
+			#interact_label = "Waiting for " + orderType
+
 func execute(player: Player):
-	if atCounter and !orderTaken and orderType != "":
+	if atCounter and !orderTaken and !orderType.is_empty():
 		var order = takeOrder()
-		if order != "":
+		if !order.is_empty():
 			order_bubble.showOrder(orderType)
-			interact_label = "Waiting for " + orderType
+			#interact_label = "Waiting for " + orderType
+			# make readable string
+			var orderString = ""
+			for i in range(orderType.size()):
+				if i > 0:
+					orderString += " and "
+				orderString += orderType[i]
+			interact_label = "waiting for " + orderString
 
 ## PLAYER CALLS THIS FUNCTION WHEN INTERACTING WITH CUSTOMER
-func takeOrder() -> String:
+func takeOrder() -> Array:
 	# customers order has been taken
-	if !orderTaken and atCounter and orderType != "":
+	if !orderTaken and atCounter and !orderType.is_empty():
 		orderTaken = true
 		order_taken.emit(orderType)
 		return orderType
-	return ""
+	return []
 	
 
 func receiveFood(foodType: String) -> bool:
-	if foodType == orderType and orderTaken:
-		orderCompleted(true)
+	if foodType in orderType and orderTaken:
+		orderType.erase(foodType) # remove the received food from the order array
+		
+		# all orders completed?
+		if orderType.is_empty():
+			orderCompleted(true)
 		return true
 	else: 
 		# giving the wrong food
@@ -95,7 +114,7 @@ func orderCompleted(success: bool):
 	order_completed.emit(self, success)
 	
 	if success:
-		print("customer sastified" + orderType)
+		print("customer sastified")
 	else:
 		_leaveAngry()
 
