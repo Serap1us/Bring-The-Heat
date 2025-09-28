@@ -8,8 +8,11 @@ extends CharacterBody2D
 @onready var sprite = $Sprite2D
 @onready var arrow_sprite = $ArrowSprite
 
-@onready var all_interactions = []
+##An array that can only be filled with objects that inherit from Interactable
+@onready var all_interactions: Array [Interactable]
 @onready var interactLabel = $"Interaction Components/InteractLabel"
+
+var dir: Vector2
 
 func _ready():
 	update_interactions()
@@ -43,6 +46,8 @@ func get_movement_input():
 	if input_vector != Vector2.ZERO:
 		var direction_faced = get_direction_faced(input_vector)
 		
+		dir = direction_faced #this one is used by scripts outside of the player
+		
 		# player facing orientation
 		var facing_left_list = ["left", "up_left", "down_left"]
 		var facing_right_list = ["right", "up_right", "down_right"]
@@ -55,14 +60,24 @@ func get_movement_input():
 		
 		# orient the arrow to the players facing direction
 		match direction_faced:
-			"right": arrow_sprite.rotation = PI
-			"down_right": arrow_sprite.rotation = -3*PI/4
-			"down": arrow_sprite.rotation = -PI/2
-			"down_left": arrow_sprite.rotation = -PI/4
-			"left": arrow_sprite.rotation = 0 
-			"up_left": arrow_sprite.rotation = PI/4
-			"up": arrow_sprite.rotation = PI/2
-			"up_right": arrow_sprite.rotation = 3*PI/4
+			"right":
+				arrow_sprite.rotation = PI
+				
+			"down_right":
+				arrow_sprite.rotation = -3*PI/4
+			"down":
+				arrow_sprite.rotation = -PI/2
+			"down_left":
+				arrow_sprite.rotation = -PI/4
+			"left":
+				arrow_sprite.rotation = 0 
+			"up_left":
+				arrow_sprite.rotation = PI/4
+			"up":
+				arrow_sprite.rotation = PI/2
+			"up_right":
+				arrow_sprite.rotation = 3*PI/4
+		
 			
 		
 	move_and_slide()
@@ -94,25 +109,31 @@ func get_direction_faced(vector: Vector2) -> String:
 
 # Player interaction methods
 func _on_interaction_area_area_entered(area: Area2D) -> void:
-	all_interactions.insert(0, area)
-	update_interactions()
+	if area is Interactable:
+		all_interactions.insert(0, area)
+		update_interactions()
 
 
 func _on_interaction_area_area_exited(area: Area2D) -> void:
-	all_interactions.erase(area)
-	update_interactions()
-	
+	if area is Interactable:
+		all_interactions.erase(area)
+		update_interactions()
+
+##Displays the first interactable item near the player.
 func update_interactions():
-	if all_interactions:
+	if !all_interactions.is_empty():
+		print(all_interactions)
 		interactLabel.text = all_interactions[0].interact_label
 	else:
 		interactLabel.text = ""
-	
+
+##Execute the first interactable near the player.
 func execute_interactions():
 	if all_interactions:
-		var cur_interaction = all_interactions[0]
-		match cur_interaction.interact_type:
-			"print_text" : print(cur_interaction.interact_value)
+		var cur_interaction: Interactable = all_interactions[0]
+		
+		#calls the execute() function which is present within all Interactables. 
+		cur_interaction.execute(self) #Gives a reference to self (used for pickin up items).
 	
 	
 	
