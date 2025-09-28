@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bhfege3glc0ag"]
+[gd_scene load_steps=10 format=4 uid="uid://bhfege3glc0ag"]
 
 [ext_resource type="Script" uid="uid://m2ts7wangfyu" path="res://Level/main_level.gd" id="1_7ireg"]
 [ext_resource type="TileSet" uid="uid://bhd7fvldvvd8p" path="res://Level/Environment.tres" id="2_1wy1g"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://qsraeoxjmk58" path="res://Alphakind.ttf" id="5_hyf1s"]
 [ext_resource type="PackedScene" uid="uid://cmwyxltbq3dqp" path="res://PausedMenu/paused_menu.tscn" id="5_romof"]
 [ext_resource type="AudioStream" uid="uid://b8shea7s114u2" path="res://Music/GameMusic.wav" id="7_8vdnm"]
+[ext_resource type="PackedScene" uid="uid://b4a0pp54jar7v" path="res://Game Components/Interact Area/Appliance/Stove.tscn" id="8_cv6sc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vad1a"]
 font = ExtResource("5_hyf1s")
@@ -30,7 +31,7 @@ tile_set = ExtResource("2_1wy1g")
 [node name="CustomerSpawner" parent="." instance=ExtResource("2_t065x")]
 
 [node name="Player" parent="." instance=ExtResource("3_vad1a")]
-position = Vector2(94, 118)
+position = Vector2(240, 311)
 
 [node name="Player2" parent="." instance=ExtResource("3_vad1a")]
 position = Vector2(1043, 157)
@@ -129,5 +130,11 @@ position = Vector2(632, 818)
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_8vdnm")
 bus = &"Music"
+
+[node name="Stove" parent="." instance=ExtResource("8_cv6sc")]
+position = Vector2(128, 120)
+
+[node name="Stove2" parent="." instance=ExtResource("8_cv6sc")]
+position = Vector2(1159, 120)
 
 [connection signal="finished" from="music" to="." method="_on_audio_stream_player_finished"]

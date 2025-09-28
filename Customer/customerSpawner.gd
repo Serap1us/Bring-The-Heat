@@ -94,7 +94,6 @@ func _on_customerArrived(customer: customerNPC, counterNode: Node):
 	
 	var orderTypes = ["burger", "fries", "soda", "chicken"]
 	var orders = []
-	#customer.orderType = orderTypes.pick_random()
 	
 	var numOrders = randi_range(1, roundi(difficulty))
 	
