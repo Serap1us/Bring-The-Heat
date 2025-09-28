@@ -6,7 +6,7 @@ class_name MainLevel
 
 func _ready() -> void:
 	$CustomerSpawner.counterPositions = $Tables.get_children() as Array[Marker2D]
-	$CustomerSpawner.spawnPosition = $SpawnPoint
+	$CustomerSpawner.spawnPosition = $SpawnPoint.position
 
 func _set_score(new_score):
 	var prev_score := curr_score

@@ -4,7 +4,7 @@ class_name CustomerSpawner
 @export var customerScene: PackedScene = preload("res://Customer/Customer.tscn")
 
 # Spawner Settings
-@export var spawnInterval: float = 2.0
+@export var spawnInterval: float = 5.0
 @export var maxCustomers: int = 5 # max custoemrs we have in restaurant
 @export_range(0, 100) var difficulty: float = 0.0 # increases over time
 
