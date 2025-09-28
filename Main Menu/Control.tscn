@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://spq4tuworkv0"]
+[gd_scene load_steps=5 format=3 uid="uid://spq4tuworkv0"]
 
 [ext_resource type="Script" uid="uid://cenhpqu26k43v" path="res://Main Menu/control.gd" id="1_85mvp"]
+[ext_resource type="Texture2D" uid="uid://finy7e7qjaa7" path="res://Main Menu/pixel-recipe-card-stockcake.jpg" id="2_7rw6k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7rw6k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ciu3"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -18,13 +23,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.00184107, 0.00184107, 0.00184107, 1)
+color = Color(0.455506, 0.344733, 0.0485584, 1)
+
+[node name="Pixel-recipe-card-stockcake" type="Sprite2D" parent="."]
+position = Vector2(640, 432)
+scale = Vector2(3, 3)
+texture = ExtResource("2_7rw6k")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = 24.0
+offset_right = -8.0
+offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -33,14 +47,33 @@ layout_mode = 2
 
 [node name="Play" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 55
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7rw6k")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_7rw6k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_7rw6k")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7rw6k")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_7rw6k")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7rw6k")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_7rw6k")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7rw6k")
 text = "PLAY"
 
-[node name="Button2" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Settings" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 55
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8ciu3")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_8ciu3")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8ciu3")
 text = "SETTINGS"
 
-[node name="Button3" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 55
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8ciu3")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_8ciu3")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8ciu3")
 text = "QUIT"
 
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer" to="." method="_on_v_box_container_mouse_entered"]
+[connection signal="mouse_exited" from="CenterContainer/VBoxContainer" to="." method="_on_v_box_container_mouse_exited"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
