@@ -2,6 +2,11 @@ class_name Throwable extends Interactable
 
 @export var ui: throwableUI
 
+@export var throw_val: float = 3
+
+@export var speed: float = 2.6
+
+
 var is_picked_up: bool = false
 
 var player: Player
@@ -18,8 +23,6 @@ var landing_spot: Vector2
 
 var max_throw_val: float = 100
 
-@export var throw_val: float = 1
-
 
 func _ready() -> void:
 	if !ui:
@@ -28,7 +31,7 @@ func _ready() -> void:
 		ui.prog_bar.max_value = max_throw_val
 		ui.prog_bar.value = 0
 		
-		ui.landing.visible = false
+		ui.visible = false
 
 
 func _physics_process(delta: float) -> void:
@@ -36,6 +39,9 @@ func _physics_process(delta: float) -> void:
 	if player:
 		if Input.is_action_pressed("player" + str(player.player_idx) + "_rotate"):
 			is_charging_up = true
+			ui.rotation = player.dir.angle()
+			
+			ui.whole_bar.rotation =  -ui.rotation
 		
 		elif Input.is_action_just_released("player" + str(player.player_idx) + "_rotate"):
 			throw()
@@ -50,8 +56,10 @@ func _physics_process(delta: float) -> void:
 	if is_following and player != null:
 		position = player.position
 	
+	#logic for when this is being thrown.
 	elif !is_following and !has_landed:
-		pass #When tha ball has hit the ground.
+		var move_speed = speed * ui.landing.progress_ratio
+		global_position = global_position.lerp(landing_spot, speed * delta)
 
 
 #Inherited from Interactable. When this item has been picked up.
@@ -94,7 +102,7 @@ func unfollow_player():
 
 func charge_throw():
 	if is_charging_up:
-		ui.landing.visible = true
+		ui.visible = true
 		
 		ui.landing.progress_ratio += throw_val * get_process_delta_time()
 		
@@ -104,14 +112,16 @@ func charge_throw():
 	else:
 		ui.prog_bar.value -= throw_val
 		
-		ui.landing.visible = false
+		ui.visible = false
 		
 		ui.landing.progress_ratio -= throw_val * get_process_delta_time()
 
 
 func throw():
+	landing_spot = ui.landing.global_position + Vector2(0, -16) + (player.dir * 128)
+	
+	print(position, landing_spot)
+	
 	unfollow_player()
 	
 	has_landed = false
-	
-	landing_spot = ui.landing.global_position
