@@ -39,7 +39,6 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction Components/InteractionArea"]
-position = Vector2(0, 0.666667)
 shape = SubResource("CircleShape2D_q3lat")
 
 [node name="InteractLabel" type="Label" parent="Interaction Components"]
