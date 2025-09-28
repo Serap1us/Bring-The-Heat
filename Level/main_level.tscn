@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cmwyxltbq3dqp" path="res://PausedMenu/paused_menu.tscn" id="5_romof"]
 [ext_resource type="AudioStream" uid="uid://b8shea7s114u2" path="res://Music/GameMusic.wav" id="7_8vdnm"]
 [ext_resource type="PackedScene" uid="uid://b4a0pp54jar7v" path="res://Game Components/Interact Area/Appliance/Stove.tscn" id="8_cv6sc"]
-[ext_resource type="PackedScene" path="res://Game Components/Interact Area/Appliance/SodaMachine.tscn" id="9_7gvd8"]
+[ext_resource type="PackedScene" uid="uid://c3etlgged6hta" path="res://Game Components/Interact Area/Appliance/SodaMachine.tscn" id="9_7gvd8"]
 [ext_resource type="PackedScene" uid="uid://ct15kknq873di" path="res://Game Components/Interact Area/Appliance/Oven.tscn" id="10_m5tu5"]
 [ext_resource type="PackedScene" uid="uid://bcu3t346uu4rx" path="res://Game Components/Interact Area/Appliance/Pantry.tscn" id="11_f68k2"]
 
