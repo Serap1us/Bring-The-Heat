@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://47wqy3s5g64" path="res://Player/Player_models.png" id="2_q3lat"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tok1r"]
-radius = 6.0
-height = 26.6667
+radius = 3.75
+height = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q3lat"]
 radius = 16.7862
@@ -27,7 +27,7 @@ hframes = 4
 frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.666667, 0.666667)
+position = Vector2(0, 5.75)
 shape = SubResource("CapsuleShape2D_tok1r")
 
 [node name="Interaction Components" type="Node2D" parent="."]

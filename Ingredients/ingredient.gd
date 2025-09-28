@@ -10,11 +10,11 @@ enum Ingredients {
 	VEGETABLE
 	}
 
+
 @export var ingredient: Ingredients
+@onready var ingredient_sprite = $Sprite2D
 
-
-func _ready() -> void:
-	#Display the name when player is near.
-	interact_label = Ingredients.keys()[ingredient]
-
-#TODO: Add some code to change the sprite based on the enum var.
+func set_ingredient(new_ingredient: String):
+	ingredient = Ingredients.find_key(new_ingredient.to_upper())
+	interact_label = new_ingredient
+	ingredient_sprite.frame = ingredient

@@ -11,7 +11,14 @@ radius = 28.0713
 collision_layer = 2
 monitoring = false
 script = ExtResource("1_g6pem")
+ingredient = null
+ingredient_string = null
 ui = NodePath("ThrowableUi")
+throw_val = null
+speed = null
+interact_label = null
+interact_type = null
+interact_value = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(5, 5)

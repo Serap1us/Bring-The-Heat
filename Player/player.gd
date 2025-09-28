@@ -67,7 +67,6 @@ func get_movement_input():
 		match direction_faced:
 			"right":
 				arrow_sprite.rotation = PI
-				
 			"down_right":
 				arrow_sprite.rotation = -3*PI/4
 			"down":
@@ -82,9 +81,6 @@ func get_movement_input():
 				arrow_sprite.rotation = PI/2
 			"up_right":
 				arrow_sprite.rotation = 3*PI/4
-		
-			
-		
 	move_and_slide()
 
 # Use vectors to determine the sprite arrow direction
@@ -148,7 +144,7 @@ func hasFood() -> bool:
 
 func getCurrentFood() -> Ingredient:
 	if held_item is Ingredient:
-		return held_item as Ingredient
+		return held_item.interact_label
 	return null
 
 func removeFood():
