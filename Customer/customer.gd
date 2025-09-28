@@ -82,7 +82,26 @@ func execute(player: Player):
 					orderString += " and "
 				orderString += orderType[i]
 			interact_label = "waiting for " + orderString
+	
+	## Actually giving them the food
+	elif orderTaken and player.hasFood():
+		var foodType = player.getCurrentFood()           # remember to amke a getter for the currentFood we are holding
+		
+		if receiveFood(foodType):
+			player.removeFood()
+			
+			# are there orders left?
+			if !orderType.is_empty():
+				var orderString = ""
+				for i in range(orderType.size()):
+					if i > 0:
+						orderString += " and "
+					orderString += orderType[i]
+				interact_label = "waiting for " + orderString
+			else:
+				interact_label = "order complete"
 
+	
 ## PLAYER CALLS THIS FUNCTION WHEN INTERACTING WITH CUSTOMER
 func takeOrder() -> Array:
 	# customers order has been taken
