@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://bhfege3glc0ag"]
+[gd_scene load_steps=9 format=4 uid="uid://bhfege3glc0ag"]
 
 [ext_resource type="Script" uid="uid://m2ts7wangfyu" path="res://Level/main_level.gd" id="1_7ireg"]
 [ext_resource type="TileSet" uid="uid://bhd7fvldvvd8p" path="res://Level/Environment.tres" id="2_1wy1g"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dq8nlrjhdj7kw" path="res://Player/Player.tscn" id="3_vad1a"]
 [ext_resource type="FontFile" uid="uid://qsraeoxjmk58" path="res://Alphakind.ttf" id="5_hyf1s"]
 [ext_resource type="PackedScene" uid="uid://cmwyxltbq3dqp" path="res://PausedMenu/paused_menu.tscn" id="5_romof"]
+[ext_resource type="AudioStream" uid="uid://b8shea7s114u2" path="res://Music/GameMusic.wav" id="7_8vdnm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vad1a"]
 font = ExtResource("5_hyf1s")
@@ -124,3 +125,9 @@ visible = false
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(632, 818)
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_8vdnm")
+bus = &"Music"
+
+[connection signal="finished" from="music" to="." method="_on_audio_stream_player_finished"]

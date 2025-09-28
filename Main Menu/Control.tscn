@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://spq4tuworkv0"]
+[gd_scene load_steps=7 format=3 uid="uid://spq4tuworkv0"]
 
 [ext_resource type="Script" uid="uid://cenhpqu26k43v" path="res://Main Menu/control.gd" id="1_85mvp"]
 [ext_resource type="Texture2D" uid="uid://finy7e7qjaa7" path="res://Main Menu/pixel-recipe-card-stockcake.jpg" id="2_7rw6k"]
+[ext_resource type="PackedScene" uid="uid://c6iioa2rrsvqu" path="res://Settings Menu/settings_menu.tscn" id="3_8ciu3"]
+[ext_resource type="AudioStream" uid="uid://xlcf3us8xgr0" path="res://Music/MainMenuMusic.wav" id="4_mojji"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7rw6k"]
 
@@ -73,6 +75,16 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_8ciu3")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_8ciu3")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_8ciu3")
 text = "QUIT"
+
+[node name="Settings_Menu" parent="." instance=ExtResource("3_8ciu3")]
+visible = false
+layout_mode = 1
+
+[node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mojji")
+volume_db = -15.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="mouse_entered" from="CenterContainer/VBoxContainer" to="." method="_on_v_box_container_mouse_entered"]
 [connection signal="mouse_exited" from="CenterContainer/VBoxContainer" to="." method="_on_v_box_container_mouse_exited"]
