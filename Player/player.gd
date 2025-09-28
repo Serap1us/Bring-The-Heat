@@ -48,7 +48,7 @@ func get_movement_input():
 	if input_vector != Vector2.ZERO:
 		var direction_faced = get_direction_faced(input_vector)
 		
-		dir = direction_faced #this one is used by scripts outside of the player
+		dir = input_vector #this one is used by scripts outside of the player
 		
 		# player facing orientation
 		var facing_left_list = ["left", "up_left", "down_left"]

@@ -6,17 +6,17 @@
 [ext_resource type="Script" uid="uid://3ggsth3o8v18" path="res://Customer/randomsprite.gd" id="3_ms251"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ms251"]
-radius = 8.0
-height = 38.0
+radius = 4.66667
+height = 22.6667
 
 [node name="Customer" type="Area2D" node_paths=PackedStringArray("patienceBar")]
+scale = Vector2(4, 4)
 script = ExtResource("1_47pxv")
 patienceBar = NodePath("PatienceBar")
 
 [node name="CustomerSprite" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -13)
-scale = Vector2(2.15625, 2.15625)
 texture = ExtResource("2_k6pke")
 hframes = 3
 vframes = 3
@@ -24,11 +24,13 @@ region_rect = Rect2(0, 0, 32, 32)
 script = ExtResource("3_ms251")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.33333)
 shape = SubResource("CapsuleShape2D_ms251")
 
 [node name="PatienceBar" parent="." instance=ExtResource("3_k6pke")]
-offset_left = -20.0
-offset_top = -31.0
-offset_right = 20.0
-offset_bottom = -25.0
+offset_left = -8.0
+offset_top = -23.25
+offset_right = 32.0
+offset_bottom = -17.25
+scale = Vector2(0.4, 0.4)
 metadata/_edit_use_anchors_ = true

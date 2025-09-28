@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=4 uid="uid://bhfege3glc0ag"]
+[gd_scene load_steps=7 format=4 uid="uid://bhfege3glc0ag"]
 
 [ext_resource type="Script" uid="uid://m2ts7wangfyu" path="res://Level/main_level.gd" id="1_7ireg"]
 [ext_resource type="TileSet" uid="uid://bhd7fvldvvd8p" path="res://Level/Environment.tres" id="2_1wy1g"]
-[ext_resource type="PackedScene" uid="uid://hmu6hff6guh7" path="res://Level/customer_spawner.tscn" id="2_t065x"]
+[ext_resource type="PackedScene" path="res://Level/customer_spawner.tscn" id="2_t065x"]
 [ext_resource type="PackedScene" uid="uid://dq8nlrjhdj7kw" path="res://Player/Player.tscn" id="3_vad1a"]
 [ext_resource type="PackedScene" uid="uid://cmwyxltbq3dqp" path="res://PausedMenu/paused_menu.tscn" id="5_romof"]
 
@@ -124,3 +124,6 @@ label_settings = SubResource("LabelSettings_vad1a")
 
 [node name="PausedMenu" parent="CanvasLayer" instance=ExtResource("5_romof")]
 visible = false
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(632, 818)
