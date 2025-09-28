@@ -13,8 +13,6 @@ monitoring = false
 script = ExtResource("1_g6pem")
 ui = NodePath("ThrowableUi")
 
-[node name="ThrowableUi" parent="." instance=ExtResource("2_17u5e")]
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(5, 5)
 texture = ExtResource("2_p4s65")
@@ -23,3 +21,9 @@ hframes = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 16)
 shape = SubResource("CircleShape2D_p4s65")
+
+[node name="ThrowableUi" parent="." instance=ExtResource("2_17u5e")]
+offset_left = -2.0
+offset_top = 35.0
+offset_right = -2.0
+offset_bottom = 35.0

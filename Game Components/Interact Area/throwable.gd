@@ -11,9 +11,14 @@ var is_following: bool = false
 
 var is_charging_up: bool = false
 
+#Is the throwable in the air?
+var has_landed: bool = true
+
+var landing_spot: Vector2
+
 var max_throw_val: float = 100
 
-@export var throw_val: float = 5
+@export var throw_val: float = 1
 
 
 func _ready() -> void:
@@ -27,19 +32,26 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_pressed("player" + str(player.player_idx) + "_rotate"):
-		if Input.is_action_pressed("player" + str(player.player_idx) + "_interact"):
-			is_charging_up
-
-
-func _process(delta: float) -> void:
+	#If there's a player and you're holding the throw button.
+	if player:
+		if Input.is_action_pressed("player" + str(player.player_idx) + "_rotate"):
+			is_charging_up = true
+		
+		elif Input.is_action_just_released("player" + str(player.player_idx) + "_rotate"):
+			throw()
+			is_charging_up = false
+		
+		else:
+			is_charging_up = false
+	
+	charge_throw()
+	
+	# This if/else is for changing the position of the throwable.
 	if is_following and player != null:
 		position = player.position
 	
-	if is_charging_up:
-		ui.prog_bar.value += throw_val
-	elif ui.prog_bar.value > 0:
-		ui.prog_bar.value -= throw_val * 5
+	elif !is_following and !has_landed:
+		pass #When tha ball has hit the ground.
 
 
 #Inherited from Interactable. When this item has been picked up.
@@ -47,7 +59,7 @@ func execute(player: Player):
 	if !is_picked_up:
 		follow_player(player)
 		
-		player.held_item = self
+		player.set_held_item(self)
 		
 		is_picked_up = true
 		
@@ -66,14 +78,40 @@ func follow_player(player: Player):
 	is_following = true
 
 
-##Unattach from player.
+##Unattach from player.d
 func unfollow_player():
+	self.player = null
+	
+	#turn the area2D back on. Quickly move it so the player registers it as entering its area again.
+	monitorable = true
+	var past_pos = global_position
+	global_position = Vector2.ZERO
+	global_position = past_pos
+	
 	is_following = false
+	is_picked_up = false
 
 
 func charge_throw():
-	print(player.dir)
+	if is_charging_up:
+		ui.landing.visible = true
+		
+		ui.landing.progress_ratio += throw_val * get_process_delta_time()
+		
+		ui.prog_bar.value = ui.landing.progress_ratio
+		
+		print("Charging")
+	else:
+		ui.prog_bar.value -= throw_val
+		
+		ui.landing.visible = false
+		
+		ui.landing.progress_ratio -= throw_val * get_process_delta_time()
 
 
 func throw():
-	pass
+	unfollow_player()
+	
+	has_landed = false
+	
+	landing_spot = ui.landing.global_position

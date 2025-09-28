@@ -137,7 +137,8 @@ func execute_interactions():
 		#calls the execute() function which is present within all Interactables. 
 		cur_interaction.execute(self) #Gives a reference to self (used for pickin up items).
 	
-	
+func set_held_item(item):
+	held_item = item
 	
 	
 	
