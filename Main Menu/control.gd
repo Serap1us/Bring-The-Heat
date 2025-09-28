@@ -13,6 +13,9 @@ func _ready():
 	for child in vbox.get_children():
 		if child is Button:
 			setup_hover_tween(child)
+			
+	# Settings
+	handle_connecting_signals()
 
 func setup_hover_tween(button: Button) -> void:
 	button.mouse_entered.connect(_on_button_hover_in.bind(button))
@@ -32,3 +35,24 @@ func _on_button_hover_out(button: Button) -> void:
 	#for t in get_tweens():
 		#if t.is_running() and t.target == target:
 			#t.kill()
+
+
+# Settings for main menu 
+@onready var settings: Button = $CenterContainer/VBoxContainer/Settings as Button
+@onready var settings_menu: SettingsMenu = $Settings_Menu as SettingsMenu
+@onready var center_container: CenterContainer = $CenterContainer as CenterContainer
+
+
+func on_settings_pressed() -> void:
+	print("load settings menu")
+	center_container.visible = false
+	settings_menu.set_process(true)
+	settings_menu.visible = true
+	
+func on_exit_settings_menu() -> void:
+	center_container.visible = true
+	settings_menu.visible = false
+
+func handle_connecting_signals() -> void:
+	settings.button_down.connect(on_settings_pressed)
+	settings_menu.exit_settings_menu.connect(on_exit_settings_menu)

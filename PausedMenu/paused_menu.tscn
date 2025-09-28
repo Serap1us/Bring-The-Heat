@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmwyxltbq3dqp"]
+[gd_scene load_steps=8 format=3 uid="uid://cmwyxltbq3dqp"]
 
 [ext_resource type="Script" uid="uid://8y6cirt6uptd" path="res://PausedMenu/paused_menu.gd" id="1_q68yk"]
 [ext_resource type="Shader" uid="uid://cvn23hdluitnk" path="res://PausedMenu/paused_menu.gdshader" id="2_j57rw"]
+[ext_resource type="PackedScene" uid="uid://c6iioa2rrsvqu" path="res://Settings Menu/settings_menu.tscn" id="3_t3nd5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t3nd5"]
 shader = ExtResource("2_j57rw")
@@ -82,6 +83,10 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_j57rw")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_t3nd5")
 theme_override_styles/normal = SubResource("StyleBoxFlat_5m3nm")
 text = "Quit"
+
+[node name="Settings_Menu" parent="." instance=ExtResource("3_t3nd5")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="GridContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]
 [connection signal="pressed" from="GridContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
