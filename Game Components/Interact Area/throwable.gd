@@ -47,6 +47,8 @@ func execute(player: Player):
 	if !is_picked_up:
 		follow_player(player)
 		
+		player.held_item = self
+		
 		is_picked_up = true
 		
 		close_area()

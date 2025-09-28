@@ -12,6 +12,8 @@ extends CharacterBody2D
 @onready var all_interactions: Array [Interactable]
 @onready var interactLabel = $"Interaction Components/InteractLabel"
 
+@export var held_item: Throwable
+
 var dir: Vector2
 
 func _ready():
