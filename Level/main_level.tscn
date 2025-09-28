@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://bhfege3glc0ag"]
+[gd_scene load_steps=6 format=4 uid="uid://bhfege3glc0ag"]
 
 [ext_resource type="Script" uid="uid://m2ts7wangfyu" path="res://Level/main_level.gd" id="1_7ireg"]
 [ext_resource type="TileSet" uid="uid://bhd7fvldvvd8p" path="res://Level/Environment.tres" id="2_1wy1g"]
 [ext_resource type="PackedScene" uid="uid://dq8nlrjhdj7kw" path="res://Player/Player.tscn" id="3_vad1a"]
+[ext_resource type="PackedScene" uid="uid://cmwyxltbq3dqp" path="res://PausedMenu/paused_menu.tscn" id="5_romof"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vad1a"]
 font_size = 32
@@ -41,3 +42,8 @@ offset_right = 58.0
 offset_bottom = 16.0
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_vad1a")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PausedMenu" parent="CanvasLayer" instance=ExtResource("5_romof")]
+visible = false
