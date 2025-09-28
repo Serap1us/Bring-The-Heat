@@ -9,6 +9,7 @@ class_name customerNPC
 # npc attributes
 @export var maxMovespeed: float = 150.00
 @export var maxPatience: float = 30.00 # 30 seconds patience
+@export var basePoints: int = 200
 
 ## Is he at the counter?
 var atCounter: bool = false
@@ -25,7 +26,7 @@ var currentPatience: float
 @export var order_bubble: OrderBubble
 
 # Signals
-signal order_completed(success: bool)
+signal order_completed(points: int)
 signal arrivedAtCounter
 signal order_taken(order_type: String)
 
@@ -59,9 +60,12 @@ func _moveTowardTarget(delta):
 	
 	# check are we at counter?
 	if global_position.distance_to(targetPosition) < 5.0:
+		if targetPosition == Vector2(632,818):
+			queue_free()
 		atCounter = true
 		patienceBar.visible = true
 		arrivedAtCounter.emit()
+	
 
 #func execute(player: Player):
 	#if atCounter and !orderTaken and orderType != "":
@@ -123,7 +127,7 @@ func receiveFood(foodType: String) -> bool:
 		return true
 	else: 
 		# giving the wrong food
-		currentPatience -= 2.5
+		currentPatience -= maxPatience * 0.25
 		patienceBar.updatePatience(currentPatience)
 		return false
 
@@ -131,13 +135,29 @@ func receiveFood(foodType: String) -> bool:
 
 func orderCompleted(success: bool):
 	# order fullfilled (or failed)
-	order_completed.emit(self, success)
+	
 	
 	if success:
 		print("customer sastified")
+		order_completed.emit(calculatePoints())
 	else:
 		_leaveAngry()
 
-func _leaveAngry():
+func calculatePoints():
+	var points = basePoints
+	
+	# scaling down the points
+	if currentPatience < maxPatience * 0.5:
+		var ratio = (currentPatience / maxPatience) * 2
+		points = roundi(basePoints * ratio)
+	return points	
+
+func _leaveAngry(): 
 	print("customer left")
-	queue_free()
+	LivesCounter.lives -= 1
+	print(LivesCounter.lives)
+	atCounter = false
+	patienceBar.visible = false
+	order_bubble.visible = false
+	targetPosition = Vector2(632,818)
+	
