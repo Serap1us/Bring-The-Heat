@@ -93,8 +93,20 @@ func _on_customerArrived(customer: customerNPC, counterNode: Node):
 	customerArrived.emit(customer, counterNode)
 	
 	var orderTypes = ["burger", "fries", "soda", "chicken"]
-	var randomOrder = orderTypes[randi() % orderTypes.size()]
-	customer.orderType = randomOrder
+	var orders = []
+	#customer.orderType = orderTypes.pick_random()
+	
+	var numOrders = 1
+	### difficulty 2 (CHANGE THIS TO PROPERTY DIFFICULTY LATER)
+	var difficulty = 2
+	if difficulty > 1:
+		numOrders = randi() % 2 + 1
+	
+	# add random orders
+	for i in range(numOrders):
+		var randomOrder = orderTypes[randi() % orderTypes.size()]
+		orders.append(randomOrder)
+	customer.orderType = orders
 	
 func _on_customerLeft(customer: customerNPC, happy: bool, counterNode: Node):
 	# free up the counter

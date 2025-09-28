@@ -1,9 +1,10 @@
-extends Area2D
+#extends Area2D
+extends Interactable
 class_name customerNPC
 
 # Scenes
 @export var patienceBarScene: PackedScene = preload("res://Customer/Patience/patiencebar.tscn")
-
+@export var orderBubbleScene: PackedScene = preload("res://Customer/Ordering/OrderBubble.tscn")
 ######
 # npc attributes
 @export var maxMovespeed: float = 150.00
@@ -15,11 +16,13 @@ var targetPosition: Vector2
 
 ## What am I ordering?
 var orderTaken: bool = false
-var orderType: String = ""  # "burger"
+#var orderType: String = ""  # "burger"
+var orderType: Array = []  # ["burger", "fries"]
 
 ## Patience System:
 var currentPatience: float 
 @export var patienceBar: PatienceBar
+@export var order_bubble: OrderBubble
 
 # Signals
 signal order_completed(success: bool)
@@ -27,6 +30,11 @@ signal arrivedAtCounter
 signal order_taken(order_type: String)
 
 func _ready():
+	super._ready()
+	
+	interact_label = "Take Order"
+	interact_type = "customer"
+	
 	currentPatience = maxPatience
 	patienceBar.maxValue = maxPatience
 	patienceBar.updatePatience(currentPatience)
@@ -35,7 +43,7 @@ func _process(delta):
 	if !atCounter:
 		_moveTowardTarget(delta)
 	else:
-		if currentPatience > 0 and !orderTaken:
+		if currentPatience > 0:
 			currentPatience -= delta
 			patienceBar.updatePatience(currentPatience)
 			
@@ -53,20 +61,64 @@ func _moveTowardTarget(delta):
 	if global_position.distance_to(targetPosition) < 5.0:
 		atCounter = true
 		arrivedAtCounter.emit()
+
+#func execute(player: Player):
+	#if atCounter and !orderTaken and orderType != "":
+		#var order = takeOrder()
+		#if order != "":
+			#order_bubble.showOrder(orderType)
+			#interact_label = "Waiting for " + orderType
+
+func execute(player: Player):
+	if atCounter and !orderTaken and !orderType.is_empty():
+		var order = takeOrder()
+		if !order.is_empty():
+			order_bubble.showOrder(orderType)
+			#interact_label = "Waiting for " + orderType
+			# make readable string
+			var orderString = ""
+			for i in range(orderType.size()):
+				if i > 0:
+					orderString += " and "
+				orderString += orderType[i]
+			interact_label = "waiting for " + orderString
+	
+	## Actually giving them the food
+	elif orderTaken and player.hasFood():
+		var foodType = player.getCurrentFood()           # remember to amke a getter for the currentFood we are holding
 		
+		if receiveFood(foodType):
+			player.removeFood()
+			
+			# are there orders left?
+			if !orderType.is_empty():
+				var orderString = ""
+				for i in range(orderType.size()):
+					if i > 0:
+						orderString += " and "
+					orderString += orderType[i]
+				interact_label = "waiting for " + orderString
+			else:
+				interact_label = "order complete"
+
+	
 ## PLAYER CALLS THIS FUNCTION WHEN INTERACTING WITH CUSTOMER
-func takeOrder() -> String:
+func takeOrder() -> Array:
 	# customers order has been taken
-	if !orderTaken and atCounter and orderType != "":
+	if !orderTaken and atCounter and !orderType.is_empty():
 		orderTaken = true
 		order_taken.emit(orderType)
 		return orderType
-	return ""
+	return []
 	
 
 func receiveFood(foodType: String) -> bool:
-	if foodType == orderType and orderTaken:
-		orderCompleted(true)
+	if foodType in orderType and orderTaken:
+		orderType.erase(foodType) # remove the received food from the order array
+		
+		# all orders completed?
+		if orderType.is_empty():
+			orderCompleted(true)
 		return true
 	else: 
 		# giving the wrong food
@@ -81,7 +133,7 @@ func orderCompleted(success: bool):
 	order_completed.emit(self, success)
 	
 	if success:
-		print("customer sastified" + orderType)
+		print("customer sastified")
 	else:
 		_leaveAngry()
 
