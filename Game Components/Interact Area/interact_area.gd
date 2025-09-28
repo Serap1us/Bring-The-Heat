@@ -19,12 +19,6 @@ func execute(player: Player):
 	print("Interacting with ", self, " If you are seeing this then this function has not been overwritten.")
 
 
-##Only used by interactable objects that hold fire. Used for taking fire out.
-func take_fire():
-	if has_fire:
-		has_fire = false
-
-
 func close_area():
 	monitorable = false
 	monitoring = false

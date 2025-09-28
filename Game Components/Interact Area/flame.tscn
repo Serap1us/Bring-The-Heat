@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3a27ifum8nll"]
+
+[ext_resource type="Script" uid="uid://cnnt800kelneo" path="res://Game Components/Interact Area/flame.gd" id="1_fq5ps"]
+[ext_resource type="Texture2D" uid="uid://cxrrmc6gowy74" path="res://Game Components/Interact Area/Fire.png" id="1_h580v"]
+[ext_resource type="PackedScene" uid="uid://dx4gy0d3vr72q" path="res://Game Components/Interact Area/throwableUI.tscn" id="3_xksxn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nyn1d"]
+radius = 25.4951
+
+[node name="Flame" type="Area2D" node_paths=PackedStringArray("ui")]
+collision_layer = 2
+monitoring = false
+script = ExtResource("1_fq5ps")
+ui = NodePath("ThrowableUi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 16)
+scale = Vector2(4, 4)
+texture = ExtResource("1_h580v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
+shape = SubResource("CircleShape2D_nyn1d")
+
+[node name="ThrowableUi" parent="." instance=ExtResource("3_xksxn")]
+offset_top = 16.0
+offset_bottom = 16.0
