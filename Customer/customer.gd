@@ -150,10 +150,12 @@ func calculatePoints():
 	if currentPatience < maxPatience * 0.5:
 		var ratio = (currentPatience / maxPatience) * 2
 		points = roundi(basePoints * ratio)
-	return points
+	return points	
 
-func _leaveAngry():
+func _leaveAngry(): 
 	print("customer left")
+	LivesCounter.lives -= 1
+	print(LivesCounter.lives)
 	atCounter = false
 	patienceBar.visible = false
 	order_bubble.visible = false
