@@ -4,6 +4,7 @@ class_name MainLevel
 @export var curr_score := 0 : set = _set_score
 @onready var score_label = $Control/Score
 @onready var asp: AudioStreamPlayer = $music
+@onready var flame_scene = "res://Game Components/Interact Area/flame.tscn"
 
 # game music
 var volume = -15

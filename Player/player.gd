@@ -150,11 +150,7 @@ func getCurrentFood() -> Ingredient:
 	if held_item is Ingredient:
 		return held_item as Ingredient
 	return null
-	
-	
-	
-	
-	
-	
-	
-	
+
+func removeFood():
+	if held_item is Ingredient:
+		held_item = null

@@ -60,6 +60,7 @@ func _moveTowardTarget(delta):
 	# check are we at counter?
 	if global_position.distance_to(targetPosition) < 5.0:
 		atCounter = true
+		patienceBar.visible = true
 		arrivedAtCounter.emit()
 
 #func execute(player: Player):
