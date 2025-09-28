@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://6hwxw3r3q6bl"]
+[gd_scene load_steps=8 format=3 uid="uid://6hwxw3r3q6bl"]
 
 [ext_resource type="Script" uid="uid://nseje5f81lc8" path="res://Customer/customer.gd" id="1_47pxv"]
 [ext_resource type="Texture2D" uid="uid://ta8gm7hfy2p" path="res://Customer/Customers.png" id="2_k6pke"]
 [ext_resource type="PackedScene" uid="uid://b547oplfbisyl" path="res://Customer/Patience/patiencebar.tscn" id="3_k6pke"]
 [ext_resource type="Script" uid="uid://3ggsth3o8v18" path="res://Customer/randomsprite.gd" id="3_ms251"]
 [ext_resource type="PackedScene" uid="uid://dk428o3rdd50" path="res://Customer/Ordering/OrderBubble.tscn" id="5_i5y8d"]
+[ext_resource type="AudioStream" uid="uid://vsu3rd5uq4oi" path="res://Music/short_Bell_ringing.wav" id="6_73njr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ms251"]
 radius = 4.66667
@@ -41,3 +42,9 @@ metadata/_edit_use_anchors_ = true
 [node name="OrderBubble" parent="." instance=ExtResource("5_i5y8d")]
 visible = false
 position = Vector2(-8.5, -14.25)
+
+[node name="sfx_bell" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_73njr")
+volume_db = 15.0
+autoplay = true
+bus = &"Sfx"

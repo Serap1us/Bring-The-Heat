@@ -36,6 +36,7 @@ enum Ingredients {
 var stored_food: Ingredient
 
 var stored_fire: Interactable
+@onready var sfx_stove: AudioStreamPlayer2D = $sfx_stove
 
 
 func _ready() -> void:
@@ -56,8 +57,10 @@ func _physics_process(delta: float) -> void:
 		
 		if stored_food != null:
 			cooking_timer.paused = false
+			
 		else: 
 			cooking_timer.paused = true
+			
 	else:
 		anim_player.play("Idle")
 

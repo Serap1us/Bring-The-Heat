@@ -82,7 +82,7 @@ layout_mode = 1
 
 [node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_mojji")
-volume_db = -15.0
+volume_db = -25.0
 autoplay = true
 bus = &"Music"
 

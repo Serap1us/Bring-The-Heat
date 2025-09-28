@@ -10,6 +10,11 @@ class_name customerNPC
 @export var maxMovespeed: float = 150.00
 @export var maxPatience: float = 30.00 # 30 seconds patience
 
+# customer sfx 
+@onready var sfx_mumble: AudioStreamPlayer2D = $sfx_mumble
+@onready var sfx_bell: AudioStreamPlayer2D = $sfx_bell
+
+
 ## Is he at the counter?
 var atCounter: bool = false
 var targetPosition: Vector2
@@ -43,12 +48,14 @@ func _process(delta):
 	if !atCounter:
 		_moveTowardTarget(delta)
 	else:
+		sfx_bell.play()
 		if currentPatience > 0:
 			currentPatience -= delta
 			patienceBar.updatePatience(currentPatience)
 			
 			if currentPatience <= 0:
 				_leaveAngry()
+				
 
 func _moveTowardTarget(delta):
 	var direction = (targetPosition - global_position).normalized()
@@ -140,3 +147,7 @@ func orderCompleted(success: bool):
 func _leaveAngry():
 	print("customer left")
 	queue_free()
+
+
+	
+	

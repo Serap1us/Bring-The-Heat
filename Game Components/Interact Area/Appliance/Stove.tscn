@@ -1,7 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://b4a0pp54jar7v"]
+[gd_scene load_steps=9 format=3 uid="uid://b4a0pp54jar7v"]
 
 [ext_resource type="Script" uid="uid://bdr1daqohe23x" path="res://Game Components/Interact Area/Appliance/appliance.gd" id="1_plymq"]
 [ext_resource type="Texture2D" uid="uid://gwl2b6agrufo" path="res://Game Components/Interact Area/Appliance/Appliances.png" id="2_y8u47"]
+[ext_resource type="AudioStream" uid="uid://cfso1fdqr17wt" path="res://Music/Frying.wav" id="3_s6ovo"]
+
+[sub_resource type="Animation" id="Animation_ihvxt"]
+resource_name = "Flaming"
+length = 0.375012
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Appliances:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 3]
+}
 
 [sub_resource type="Animation" id="Animation_y8u47"]
 resource_name = "Idle"
@@ -31,24 +50,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_ihvxt"]
-resource_name = "Flaming"
-length = 0.375012
-loop_mode = 1
-step = 0.125
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Appliances:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [1, 2, 3]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6g3jf"]
@@ -91,12 +92,15 @@ position = Vector2(0, 19.2)
 
 [node name="Cook Point" type="Marker2D" parent="."]
 position = Vector2(0, -9.6)
-scale = Vector2(1, 1)
 
 [node name="Cooking Timer" type="Timer" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1, 1)
 shape = SubResource("CircleShape2D_y8u47")
+
+[node name="sfx_stove" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_s6ovo")
+volume_db = -15.0
+bus = &"Sfx"
 
 [connection signal="timeout" from="Cooking Timer" to="." method="_on_cooking_timer_timeout"]
