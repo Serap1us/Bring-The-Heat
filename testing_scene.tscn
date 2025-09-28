@@ -24,6 +24,7 @@ player_idx = 2
 
 [node name="Stove" parent="." instance=ExtResource("4_map4d")]
 position = Vector2(134, 390)
+allowed_ingredients = Array[int]([0, 1])
 
 [node name="Flame" parent="." instance=ExtResource("5_y47j6")]
 position = Vector2(453, 555)

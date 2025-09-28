@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://bhfege3glc0ag"]
+[gd_scene load_steps=12 format=4 uid="uid://bhfege3glc0ag"]
 
 [ext_resource type="Script" uid="uid://m2ts7wangfyu" path="res://Level/main_level.gd" id="1_7ireg"]
 [ext_resource type="TileSet" uid="uid://bhd7fvldvvd8p" path="res://Level/Environment.tres" id="2_1wy1g"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cmwyxltbq3dqp" path="res://PausedMenu/paused_menu.tscn" id="5_romof"]
 [ext_resource type="AudioStream" uid="uid://b8shea7s114u2" path="res://Music/GameMusic.wav" id="7_8vdnm"]
 [ext_resource type="PackedScene" uid="uid://b4a0pp54jar7v" path="res://Game Components/Interact Area/Appliance/Stove.tscn" id="8_cv6sc"]
+[ext_resource type="PackedScene" uid="uid://c3etlgged6hta" path="res://Game Components/Interact Area/Appliance/SodaMachine.tscn" id="9_7gvd8"]
+[ext_resource type="PackedScene" uid="uid://ddtxe2h1hc1ry" path="res://Game Components/Interact Area/Appliance/Oven.tscn" id="10_m5tu5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vad1a"]
 font = ExtResource("5_hyf1s")
@@ -29,13 +31,6 @@ tile_map_data = PackedByteArray("AAABAAcAAAAEAAIAAAACAAcAAAAEAAIAAAADAAcAAAAEAAI
 tile_set = ExtResource("2_1wy1g")
 
 [node name="CustomerSpawner" parent="." instance=ExtResource("2_t065x")]
-
-[node name="Player" parent="." instance=ExtResource("3_vad1a")]
-position = Vector2(240, 311)
-
-[node name="Player2" parent="." instance=ExtResource("3_vad1a")]
-position = Vector2(1043, 157)
-player_idx = 2
 
 [node name="Tables" type="Node2D" parent="."]
 
@@ -133,8 +128,21 @@ bus = &"Music"
 
 [node name="Stove" parent="." instance=ExtResource("8_cv6sc")]
 position = Vector2(128, 120)
+collision_layer = 3
 
-[node name="Stove2" parent="." instance=ExtResource("8_cv6sc")]
-position = Vector2(1159, 120)
+[node name="SodaMachine" parent="." instance=ExtResource("9_7gvd8")]
+position = Vector2(901, 110)
+collision_layer = 3
+
+[node name="Oven" parent="." instance=ExtResource("10_m5tu5")]
+position = Vector2(1035, 119)
+collision_layer = 3
+
+[node name="Player" parent="." instance=ExtResource("3_vad1a")]
+position = Vector2(240, 311)
+
+[node name="Player2" parent="." instance=ExtResource("3_vad1a")]
+position = Vector2(1043, 187)
+player_idx = 2
 
 [connection signal="finished" from="music" to="." method="_on_audio_stream_player_finished"]
