@@ -46,5 +46,5 @@ custom_minimum_size = Vector2(120, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-text = "Exit
+text = "Back
 "
