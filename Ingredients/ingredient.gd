@@ -16,3 +16,5 @@ enum Ingredients {
 func _ready() -> void:
 	#Display the name when player is near.
 	interact_label = Ingredients.keys()[ingredient]
+
+#TODO: Add some code to change the sprite based on the enum var.

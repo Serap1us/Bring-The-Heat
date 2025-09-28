@@ -11,6 +11,7 @@ enum Ingredients {
 	VEGETABLE
 	}
 
+##List of ingredient types that this appliance can cook.
 @export var allowed_ingredients: Array[Ingredients]
 
 
@@ -63,11 +64,13 @@ func _physics_process(delta: float) -> void:
 
 func execute(player: Player):
 	if player.held_item:
-		print("dsf")
 		if player.held_item is Ingredient && stored_food == null:
 			stored_food = player.held_item
 			
-			store_ingredient()
+			if allowed_ingredients.has(stored_food.ingredient):
+				store_ingredient()
+			else:
+				stored_food = null
 			
 		else:
 			stored_fire = player.held_item
