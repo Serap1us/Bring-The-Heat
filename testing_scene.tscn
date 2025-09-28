@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctej6tmn48kud"]
+[gd_scene load_steps=6 format=3 uid="uid://ctej6tmn48kud"]
 
 [ext_resource type="PackedScene" uid="uid://dq8nlrjhdj7kw" path="res://Player/Player.tscn" id="1_7tmfp"]
 [ext_resource type="PackedScene" uid="uid://fuucgmhx4kd2" path="res://Game Components/Interact Area/interact_area.tscn" id="2_j6xku"]
 [ext_resource type="PackedScene" uid="uid://757n8tp114do" path="res://Ingredients/Ingredient.tscn" id="3_j6xku"]
 [ext_resource type="PackedScene" uid="uid://b4a0pp54jar7v" path="res://Game Components/Interact Area/Appliance/Stove.tscn" id="4_map4d"]
+[ext_resource type="PackedScene" uid="uid://b3a27ifum8nll" path="res://Game Components/Interact Area/flame.tscn" id="5_y47j6"]
 
 [node name="TestingScene" type="Node2D"]
 
@@ -23,3 +24,6 @@ player_idx = 2
 
 [node name="Stove" parent="." instance=ExtResource("4_map4d")]
 position = Vector2(134, 390)
+
+[node name="Flame" parent="." instance=ExtResource("5_y47j6")]
+position = Vector2(453, 555)

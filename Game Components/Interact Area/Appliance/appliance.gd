@@ -49,14 +49,15 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if stored_fire != null and stored_food != null:
-		cooking_timer.paused = false
+	if stored_fire != null:
+		if anim_player.current_animation != "Flaming":
+				anim_player.play("Flaming")
 		
-		if !anim_player.current_animation == "Flaming":
-			anim_player.play("Flaming")
-	else: 
-		cooking_timer.paused = true
-		
+		if stored_food != null:
+			cooking_timer.paused = false
+		else: 
+			cooking_timer.paused = true
+	else:
 		anim_player.play("Idle")
 
 
@@ -99,17 +100,34 @@ func eject_ingredient():
 	
 	stored_food.z_index -= 1
 	
+	stored_food.global_position = pop_out_point.global_position
+	
 	stored_food = null
 	
 	cooking_timer.wait_time = cooking_time
 
 
 func store_fire():
-	pass
+	stored_fire.unfollow_player()
+	
+	stored_fire.close_area()
+	
+	stored_fire.visible = false
+	
+	cooking_timer.wait_time = cooking_time
 
 
 func eject_fire():
-	pass
+	stored_fire.monitorable = true
+	
+	stored_fire.global_position = pop_out_point.global_position
+	
+	stored_fire.visible = true
+	
+	stored_fire = null
+	
+	cooking_timer.wait_time = cooking_time
+
 
 
 ##Instantiate the output based on the input. (So if the first ingredient is raw chicken then the first output must be cooked chicken).
@@ -121,5 +139,7 @@ func _on_cooking_timer_timeout() -> void:
 	cooking_timer.start()
 	
 	cooking_timer.paused = true
+	
+	stored_food.queue_free()
 	
 	eject_cooked()

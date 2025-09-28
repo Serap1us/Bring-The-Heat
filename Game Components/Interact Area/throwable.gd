@@ -2,7 +2,8 @@ class_name Throwable extends Interactable
 
 @export var ui: throwableUI
 
-@export var throw_val: float = 1.6
+#The higher the number the faster it charges up to throw.
+@export var throw_val: float = 1.4
 @export var speed: float = 2
 
 
@@ -59,21 +60,19 @@ func _physics_process(delta: float) -> void:
 	elif !is_following and !has_landed:
 		var move_speed = speed * ui.landing.progress_ratio
 		global_position = global_position.lerp(landing_spot, speed * delta)
+		
+		if global_position.distance_to(landing_spot) < 32:
+			has_landed = true
 
 
 #Inherited from Interactable. When this item has been picked up.
 func execute(player: Player):
-	if !is_picked_up:
+	if !is_picked_up and player.held_item == null:
 		follow_player(player)
 		
 		is_picked_up = true
 		
 		close_area()
-	
-	else:
-		charge_throw()
-		
-		is_picked_up = false
 
 
 ##Parent this to a player
@@ -81,6 +80,8 @@ func follow_player(player: Player):
 	self.player = player
 	
 	player.set_held_item(self)
+	
+	z_index += 1
 	
 	is_following = true
 
@@ -96,6 +97,8 @@ func unfollow_player():
 	var past_pos = global_position
 	global_position = Vector2.ZERO
 	global_position = past_pos
+	
+	z_index -= 1
 	
 	is_following = false
 	is_picked_up = false

@@ -59,7 +59,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y8u47"]
-radius = 12.8
+radius = 9.6
 
 [node name="Stove" type="Area2D" node_paths=PackedStringArray("anim_player", "pop_out_point", "cook_point", "cooking_timer")]
 scale = Vector2(5, 5)
@@ -72,6 +72,7 @@ pop_out_point = NodePath("Pop out")
 cook_point = NodePath("Cook Point")
 cooking_timer = NodePath("Cooking Timer")
 cooking_time = 10.0
+interact_label = "Stove"
 
 [node name="Appliances" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
