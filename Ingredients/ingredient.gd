@@ -14,9 +14,7 @@ enum Ingredients {
 @export var ingredient: Ingredients : set = set_ingredient
 @onready var ingredient_sprite = $Sprite2D
 
-func _ready() -> void:
-	set_ingredient(Ingredients.CHICKEN)
-func set_ingredient(new_ingredient: Ingredients):
+func set_ingredient(new_ingredient: int):
 	ingredient = new_ingredient
 	interact_label = Ingredients.keys()[ingredient]
 	ingredient_sprite.frame = ingredient
