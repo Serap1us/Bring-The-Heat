@@ -135,14 +135,14 @@ func eject_fire():
 
 ##Instantiate the output based on the input. (So if the first ingredient is raw chicken then the first output must be cooked chicken).
 func eject_cooked():
-	pass
+	stored_food.cook()
+	
+	eject_ingredient()
 
 
 func _on_cooking_timer_timeout() -> void:
 	cooking_timer.start()
 	
 	cooking_timer.paused = true
-	
-	stored_food.queue_free()
 	
 	eject_cooked()
