@@ -14,11 +14,6 @@ enum Ingredients {
 @export var allowed_ingredients: Array[Ingredients]
 
 
-@export_category("Outputs")
-##These are the scenes it will spawn when the cooking is done.
-@export var outputs: Array[PackedScene]
-
-
 @export_category("Node Parts")
 
 @export var anim_player: AnimationPlayer
@@ -43,9 +38,6 @@ func _ready() -> void:
 	cooking_timer.start()
 	
 	cooking_timer.paused = true
-	
-	if outputs.size() != allowed_ingredients.size():
-		print("NEED TO ASSIGN AN OUTPUT/INPUT")
 
 
 func _physics_process(_delta: float) -> void:

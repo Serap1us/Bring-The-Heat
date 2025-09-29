@@ -140,7 +140,6 @@ func _on_interaction_area_area_exited(area: Area2D) -> void:
 ##Displays the first interactable item near the player.
 func update_interactions():
 	if !all_interactions.is_empty():
-		print(all_interactions)
 		interactLabel.text = all_interactions[0].interact_label
 	else:
 		interactLabel.text = ""

@@ -118,7 +118,6 @@ func takeOrder() -> Array:
 	
 
 func receiveFood(foodType: Ingredient) -> bool:
-	print(foodType.interact_label.to_lower())
 	if foodType.interact_label.to_lower() in orderType and orderTaken and foodType.is_cooked:
 		orderType.erase(foodType.interact_label.to_lower()) # remove the received food from the order array
 		
@@ -137,7 +136,6 @@ func receiveFood(foodType: Ingredient) -> bool:
 	# do we want to stop patience drain or slow it down while they wait for food
 
 func orderCompleted(points: int):
-		print("customer sastified")
 		order_completed.emit(calculatePoints())
 		get_parent().get_parent().curr_score = calculatePoints()
 		targetPosition = Vector2(632,818)
@@ -154,9 +152,7 @@ func calculatePoints():
 
 
 func _leaveAngry(): 
-	print("customer left")
 	LivesCounter.lives -= 1
-	print(LivesCounter.lives)
 	atCounter = false
 	patienceBar.visible = false
 	order_bubble.visible = false
