@@ -96,7 +96,6 @@ position = Vector2(896, 624)
 position = Vector2(816, 624)
 
 [node name="Control" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1151.0
@@ -147,20 +146,30 @@ stored_food = 3
 
 [node name="Pantry3" parent="." instance=ExtResource("11_f68k2")]
 position = Vector2(120, 357)
-rotation = -1.5708
 stored_food = 4
+
+[node name="Pop out" parent="Pantry3" index="1"]
+position = Vector2(21.2, 0.400002)
 
 [node name="Pantry4" parent="." instance=ExtResource("11_f68k2")]
 position = Vector2(1160, 310)
-rotation = 1.5708
 stored_food = 2
 
+[node name="Pop out" parent="Pantry4" index="1"]
+position = Vector2(-20.8, 1.90735e-06)
+
 [node name="Pantry5" parent="." instance=ExtResource("11_f68k2")]
-position = Vector2(1162, 487)
-rotation = 1.5708
+position = Vector2(1164, 436)
 stored_food = 1
 
+[node name="Pop out" parent="Pantry5" index="1"]
+position = Vector2(-21.8, 0.600002)
+
 [node name="Flame" parent="." instance=ExtResource("12_6fx8m")]
-position = Vector2(384, 446)
+position = Vector2(338, 304)
 
 [connection signal="finished" from="music" to="." method="_on_audio_stream_player_finished"]
+
+[editable path="Pantry3"]
+[editable path="Pantry4"]
+[editable path="Pantry5"]
