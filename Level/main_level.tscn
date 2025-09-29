@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://bhfege3glc0ag"]
+[gd_scene load_steps=14 format=4 uid="uid://bhfege3glc0ag"]
 
 [ext_resource type="Script" uid="uid://m2ts7wangfyu" path="res://Level/main_level.gd" id="1_7ireg"]
 [ext_resource type="TileSet" uid="uid://bhd7fvldvvd8p" path="res://Level/Environment.tres" id="2_1wy1g"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://cmwyxltbq3dqp" path="res://PausedMenu/paused_menu.tscn" id="5_romof"]
 [ext_resource type="AudioStream" uid="uid://b8shea7s114u2" path="res://Music/GameMusic.wav" id="7_8vdnm"]
 [ext_resource type="PackedScene" uid="uid://b4a0pp54jar7v" path="res://Game Components/Interact Area/Appliance/Stove.tscn" id="8_cv6sc"]
-[ext_resource type="PackedScene" uid="uid://c3etlgged6hta" path="res://Game Components/Interact Area/Appliance/SodaMachine.tscn" id="9_7gvd8"]
 [ext_resource type="PackedScene" uid="uid://ct15kknq873di" path="res://Game Components/Interact Area/Appliance/Oven.tscn" id="10_m5tu5"]
 [ext_resource type="PackedScene" uid="uid://bcu3t346uu4rx" path="res://Game Components/Interact Area/Appliance/Pantry.tscn" id="11_f68k2"]
 [ext_resource type="PackedScene" uid="uid://b3a27ifum8nll" path="res://Game Components/Interact Area/flame.tscn" id="12_6fx8m"]
@@ -84,9 +83,6 @@ position = Vector2(743, 464)
 [node name="Counter19" type="Marker2D" parent="Tables"]
 position = Vector2(743, 544)
 
-[node name="Counter20" type="Marker2D" parent="Tables"]
-position = Vector2(1136, 624)
-
 [node name="Counter21" type="Marker2D" parent="Tables"]
 position = Vector2(1056, 624)
 
@@ -100,6 +96,7 @@ position = Vector2(896, 624)
 position = Vector2(816, 624)
 
 [node name="Control" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1151.0
@@ -129,12 +126,8 @@ position = Vector2(128, 120)
 collision_layer = 3
 allowed_ingredients = Array[int]([0, 1, 2])
 
-[node name="SodaMachine" parent="." instance=ExtResource("9_7gvd8")]
-position = Vector2(895, 107)
-collision_layer = 3
-
 [node name="Oven" parent="." instance=ExtResource("10_m5tu5")]
-position = Vector2(1102, 109)
+position = Vector2(1054, 116)
 collision_layer = 3
 allowed_ingredients = Array[int]([3, 4])
 
@@ -146,10 +139,10 @@ position = Vector2(937, 304)
 player_idx = 2
 
 [node name="Pantry" parent="." instance=ExtResource("11_f68k2")]
-position = Vector2(270, 118)
+position = Vector2(883, 98)
 
 [node name="Pantry2" parent="." instance=ExtResource("11_f68k2")]
-position = Vector2(443, 118)
+position = Vector2(332, 117)
 stored_food = 3
 
 [node name="Pantry3" parent="." instance=ExtResource("11_f68k2")]

@@ -94,7 +94,7 @@ func spawnCustomer():
 func _on_customerArrived(customer: customerNPC, counterNode: Node):
 	customerArrived.emit(customer, counterNode)
 	
-	var orderTypes = ["patty", "chicken", "kebab", "pizza", "bread"]
+	var orderTypes = ["patty", "chicken", "kebab", "pizza", "dough"]
 	var orders = []
 	
 	var numOrders = randi_range(1, roundi(difficulty))
@@ -105,7 +105,7 @@ func _on_customerArrived(customer: customerNPC, counterNode: Node):
 		orders.append(randomOrder)
 	customer.orderType = orders
 	
-func _on_customerLeft(customer: customerNPC, counterNode: Node, points: int):
+func _on_customerLeft(points: int, customer: customerNPC, counterNode: Node):
 	# free up the counter
 	counterOccupancy[counterNode] = null
 	activeCustomers.erase(customer)
