@@ -94,31 +94,31 @@ _data = {
 script = ExtResource("1_1q20c")
 
 [node name="Star1" type="Sprite2D" parent="."]
-position = Vector2(1051.75, 24)
+position = Vector2(1041.75, 679)
 scale = Vector2(2.29667, 2.29667)
 texture = ExtResource("1_x27s1")
 hframes = 13
 
 [node name="Star5" type="Sprite2D" parent="."]
-position = Vector2(1253, 24.2533)
+position = Vector2(1243, 679.253)
 scale = Vector2(2.29667, 2.29667)
 texture = ExtResource("1_x27s1")
 hframes = 13
 
 [node name="Star4" type="Sprite2D" parent="."]
-position = Vector2(1201, 24.2533)
+position = Vector2(1191, 679.253)
 scale = Vector2(2.29667, 2.29667)
 texture = ExtResource("1_x27s1")
 hframes = 13
 
 [node name="Star3" type="Sprite2D" parent="."]
-position = Vector2(1150.49, 23.7467)
+position = Vector2(1140.49, 678.747)
 scale = Vector2(2.29667, 2.29667)
 texture = ExtResource("1_x27s1")
 hframes = 13
 
 [node name="Star2" type="Sprite2D" parent="."]
-position = Vector2(1100.75, 24)
+position = Vector2(1090.75, 679)
 scale = Vector2(2.29667, 2.29667)
 texture = ExtResource("1_x27s1")
 hframes = 13
