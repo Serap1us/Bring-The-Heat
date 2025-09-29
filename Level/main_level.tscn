@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=4 uid="uid://bhfege3glc0ag"]
+[gd_scene load_steps=15 format=4 uid="uid://bhfege3glc0ag"]
 
 [ext_resource type="Script" uid="uid://m2ts7wangfyu" path="res://Level/main_level.gd" id="1_7ireg"]
 [ext_resource type="TileSet" uid="uid://bhd7fvldvvd8p" path="res://Level/Environment.tres" id="2_1wy1g"]
 [ext_resource type="PackedScene" uid="uid://hmu6hff6guh7" path="res://Level/customer_spawner.tscn" id="2_t065x"]
 [ext_resource type="PackedScene" uid="uid://dq8nlrjhdj7kw" path="res://Player/Player.tscn" id="3_vad1a"]
+[ext_resource type="PackedScene" uid="uid://boebn4hhyn82c" path="res://Customer/lives.tscn" id="4_tcp6c"]
 [ext_resource type="FontFile" uid="uid://qsraeoxjmk58" path="res://Alphakind.ttf" id="5_hyf1s"]
 [ext_resource type="PackedScene" uid="uid://cmwyxltbq3dqp" path="res://PausedMenu/paused_menu.tscn" id="5_romof"]
 [ext_resource type="AudioStream" uid="uid://b8shea7s114u2" path="res://Music/GameMusic.wav" id="7_8vdnm"]
@@ -11,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c3etlgged6hta" path="res://Game Components/Interact Area/Appliance/SodaMachine.tscn" id="9_7gvd8"]
 [ext_resource type="PackedScene" uid="uid://ct15kknq873di" path="res://Game Components/Interact Area/Appliance/Oven.tscn" id="10_m5tu5"]
 [ext_resource type="PackedScene" uid="uid://bcu3t346uu4rx" path="res://Game Components/Interact Area/Appliance/Pantry.tscn" id="11_f68k2"]
+[ext_resource type="PackedScene" uid="uid://b3a27ifum8nll" path="res://Game Components/Interact Area/flame.tscn" id="12_6fx8m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vad1a"]
 font = ExtResource("5_hyf1s")
@@ -33,10 +35,9 @@ tile_set = ExtResource("2_1wy1g")
 
 [node name="CustomerSpawner" parent="." instance=ExtResource("2_t065x")]
 
-[node name="Tables" type="Node2D" parent="."]
+[node name="Lives" parent="." instance=ExtResource("4_tcp6c")]
 
-[node name="Counter2" type="Marker2D" parent="Tables"]
-position = Vector2(528, 144)
+[node name="Tables" type="Node2D" parent="."]
 
 [node name="Counter3" type="Marker2D" parent="Tables"]
 position = Vector2(528, 224)
@@ -67,9 +68,6 @@ position = Vector2(224, 624)
 
 [node name="Counter12" type="Marker2D" parent="Tables"]
 position = Vector2(144, 624)
-
-[node name="Counter14" type="Marker2D" parent="Tables"]
-position = Vector2(743, 144)
 
 [node name="Counter15" type="Marker2D" parent="Tables"]
 position = Vector2(743, 224)
@@ -102,7 +100,6 @@ position = Vector2(896, 624)
 position = Vector2(816, 624)
 
 [node name="Control" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1151.0
@@ -130,28 +127,30 @@ bus = &"Music"
 [node name="Stove" parent="." instance=ExtResource("8_cv6sc")]
 position = Vector2(128, 120)
 collision_layer = 3
+allowed_ingredients = Array[int]([0, 1, 2])
 
 [node name="SodaMachine" parent="." instance=ExtResource("9_7gvd8")]
-position = Vector2(957, 109)
+position = Vector2(895, 107)
 collision_layer = 3
 
 [node name="Oven" parent="." instance=ExtResource("10_m5tu5")]
 position = Vector2(1102, 109)
 collision_layer = 3
+allowed_ingredients = Array[int]([3, 4])
 
 [node name="Player" parent="." instance=ExtResource("3_vad1a")]
-position = Vector2(304, 307)
+position = Vector2(195, 222)
 
 [node name="Player2" parent="." instance=ExtResource("3_vad1a")]
 position = Vector2(937, 304)
 player_idx = 2
 
 [node name="Pantry" parent="." instance=ExtResource("11_f68k2")]
-position = Vector2(240, 117)
+position = Vector2(270, 118)
 
 [node name="Pantry2" parent="." instance=ExtResource("11_f68k2")]
-position = Vector2(344, 117)
-stored_food = 1
+position = Vector2(443, 118)
+stored_food = 3
 
 [node name="Pantry3" parent="." instance=ExtResource("11_f68k2")]
 position = Vector2(120, 357)
@@ -164,8 +163,11 @@ rotation = 1.5708
 stored_food = 2
 
 [node name="Pantry5" parent="." instance=ExtResource("11_f68k2")]
-position = Vector2(1160, 434)
+position = Vector2(1162, 487)
 rotation = 1.5708
-stored_food = 5
+stored_food = 1
+
+[node name="Flame" parent="." instance=ExtResource("12_6fx8m")]
+position = Vector2(384, 446)
 
 [connection signal="finished" from="music" to="." method="_on_audio_stream_player_finished"]

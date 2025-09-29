@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://spq4tuworkv0"]
 
 [ext_resource type="Script" uid="uid://cenhpqu26k43v" path="res://Main Menu/control.gd" id="1_85mvp"]
-[ext_resource type="Texture2D" uid="uid://finy7e7qjaa7" path="res://Main Menu/pixel-recipe-card-stockcake.jpg" id="2_7rw6k"]
+[ext_resource type="Texture2D" uid="uid://cpirsgx3cbctj" path="res://Main Menu/Main_Menu.webp" id="2_mojji"]
 [ext_resource type="PackedScene" uid="uid://c6iioa2rrsvqu" path="res://Settings Menu/settings_menu.tscn" id="3_8ciu3"]
 [ext_resource type="AudioStream" uid="uid://xlcf3us8xgr0" path="res://Music/MainMenuMusic.wav" id="4_mojji"]
 
@@ -28,9 +28,9 @@ grow_vertical = 2
 color = Color(0.455506, 0.344733, 0.0485584, 1)
 
 [node name="Pixel-recipe-card-stockcake" type="Sprite2D" parent="."]
-position = Vector2(640, 432)
-scale = Vector2(3, 3)
-texture = ExtResource("2_7rw6k")
+position = Vector2(640.889, 360)
+scale = Vector2(1, 1)
+texture = ExtResource("2_mojji")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -38,16 +38,20 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -8.0
-offset_top = 24.0
+offset_top = 23.0
 offset_right = -8.0
-offset_bottom = 24.0
+offset_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+offset_left = 520.0
+offset_top = 240.0
+offset_right = 751.0
+offset_bottom = 449.0
 
-[node name="Play" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Play" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 55
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7rw6k")
@@ -60,7 +64,7 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_7rw6k")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7rw6k")
 text = "PLAY"
 
-[node name="Settings" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Settings" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 55
 theme_override_styles/hover = SubResource("StyleBoxEmpty_8ciu3")
@@ -68,7 +72,7 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_8ciu3")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_8ciu3")
 text = "SETTINGS"
 
-[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 55
 theme_override_styles/hover = SubResource("StyleBoxEmpty_8ciu3")
@@ -86,6 +90,6 @@ volume_db = -15.0
 autoplay = true
 bus = &"Music"
 
-[connection signal="mouse_entered" from="CenterContainer/VBoxContainer" to="." method="_on_v_box_container_mouse_entered"]
-[connection signal="mouse_exited" from="CenterContainer/VBoxContainer" to="." method="_on_v_box_container_mouse_exited"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer" to="." method="_on_v_box_container_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer" to="." method="_on_v_box_container_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]

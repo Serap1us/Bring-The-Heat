@@ -117,9 +117,10 @@ func takeOrder() -> Array:
 	return []
 	
 
-func receiveFood(foodType: String) -> bool:
-	if foodType in orderType and orderTaken:
-		orderType.erase(foodType) # remove the received food from the order array
+func receiveFood(foodType: Ingredient) -> bool:
+	print(foodType.interact_label.to_lower())
+	if foodType.interact_label.to_lower() in orderType and orderTaken and foodType.is_cooked:
+		orderType.erase(foodType.interact_label.to_lower()) # remove the received food from the order array
 		
 		# all orders completed?
 		if orderType.is_empty():
@@ -129,19 +130,18 @@ func receiveFood(foodType: String) -> bool:
 		# giving the wrong food
 		currentPatience -= maxPatience * 0.25
 		patienceBar.updatePatience(currentPatience)
+		if currentPatience <= 0:
+			_leaveAngry()
 		return false
 
 	# do we want to stop patience drain or slow it down while they wait for food
 
-func orderCompleted(success: bool):
-	# order fullfilled (or failed)
-	
-	
-	if success:
+func orderCompleted(points: int):
 		print("customer sastified")
 		order_completed.emit(calculatePoints())
-	else:
-		_leaveAngry()
+		get_parent().get_parent().curr_score = calculatePoints()
+		targetPosition = Vector2(632,818)
+		atCounter = false
 
 func calculatePoints():
 	var points = basePoints
@@ -150,7 +150,8 @@ func calculatePoints():
 	if currentPatience < maxPatience * 0.5:
 		var ratio = (currentPatience / maxPatience) * 2
 		points = roundi(basePoints * ratio)
-	return points	
+	return points
+
 
 func _leaveAngry(): 
 	print("customer left")

@@ -144,9 +144,10 @@ func hasFood() -> bool:
 
 func getCurrentFood() -> Ingredient:
 	if held_item is Ingredient:
-		return held_item.interact_label.capitalize()
+		return held_item
 	return null
 
 func removeFood():
 	if held_item is Ingredient:
+		held_item.queue_free()
 		held_item = null

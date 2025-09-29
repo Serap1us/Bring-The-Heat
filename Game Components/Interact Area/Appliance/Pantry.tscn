@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://caesq1nnh13vf" path="res://Game Components/Interact Area/Appliance/pantry.gd" id="1_lmcwe"]
 [ext_resource type="Texture2D" uid="uid://drn6k8aw2kbcj" path="res://Level/Pantry.png" id="2_lmcwe"]
-[ext_resource type="Texture2D" uid="uid://vh32e8tl4tj0" path="res://Ingredients/Food1.webp" id="3_oqvx8"]
+[ext_resource type="Texture2D" uid="uid://bgmwkljm3tmua" path="res://Ingredients/Food2.webp" id="3_oqvx8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y8u47"]
 radius = 9.6
@@ -26,12 +26,12 @@ position = Vector2(0, 19.2)
 position = Vector2(0, -7.45058e-07)
 
 [node name="Sprite2D" type="Sprite2D" parent="StorePoint"]
-position = Vector2(0.4, -2.2)
+position = Vector2(0.6, -1.8)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("3_oqvx8")
-hframes = 6
+hframes = 5
+vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-0.2, 0)
 shape = SubResource("CircleShape2D_y8u47")

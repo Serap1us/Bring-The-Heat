@@ -3,12 +3,11 @@ class_name Pantry extends Interactable
 @export_category("Allowed Ingredients")
 ## MAKE SURE THIS IS THE SAME ENUM AS THE ONE IN INGREDIENT.GD
 enum Ingredients {
-	CHEESE,
-	TOMATO,
-	RAW_CHICKEN,
-	SODA,
-	BREAD,
-	VEGETABLE
+	PATTY,
+	CHICKEN,
+	KEBAB,
+	PIZZA,
+	DOUGH
 	}
 
 ##List of ingredient types that this appliance can cook.
@@ -24,7 +23,7 @@ enum Ingredients {
 
 @export var cook_point: Marker2D
 
-@export var stored_food: Ingredients = Ingredients.CHEESE
+@export var stored_food: Ingredients = Ingredients.PATTY
 var ingredient_scene = preload("res://Ingredients/Ingredient.tscn")
 
 

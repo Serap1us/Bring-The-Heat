@@ -6,10 +6,11 @@ class_name OrderBubble
 
 # dict to map order types to the textures
 var orderFrames = {
-	"chicken": 2,
-	"fries": 3,
-	"soda": 4,
-	"burger": 5
+	"patty": 5,
+	"chicken": 6,
+	"kebab": 7,
+	"pizza": 8,
+	"dough": 9
 }
 
 var currentOrders: Array = []

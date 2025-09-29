@@ -9,7 +9,7 @@ var tween_intensity = 1.1
 var tween_duration = 0.25
 
 func _ready():
-	var vbox = $CenterContainer/VBoxContainer
+	var vbox = $VBoxContainer
 	for child in vbox.get_children():
 		if child is Button:
 			setup_hover_tween(child)
@@ -38,7 +38,7 @@ func _on_button_hover_out(button: Button) -> void:
 
 
 # Settings for main menu 
-@onready var settings: Button = $CenterContainer/VBoxContainer/Settings as Button
+@onready var settings: Button = $VBoxContainer/Settings as Button
 @onready var settings_menu: SettingsMenu = $Settings_Menu as SettingsMenu
 @onready var center_container: CenterContainer = $CenterContainer as CenterContainer
 

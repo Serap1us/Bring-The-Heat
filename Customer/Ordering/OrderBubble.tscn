@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dk428o3rdd50"]
 
 [ext_resource type="Script" uid="uid://dekmityjfbvyd" path="res://Customer/Ordering/order_bubble.gd" id="1_vwiya"]
-[ext_resource type="Texture2D" uid="uid://vh32e8tl4tj0" path="res://Ingredients/Food1.webp" id="2_5xihs"]
 [ext_resource type="Texture2D" uid="uid://e0hrfcijtd8r" path="res://Customer/Ordering/empty.png" id="2_euvvx"]
+[ext_resource type="Texture2D" uid="uid://bgmwkljm3tmua" path="res://Ingredients/Food2.webp" id="3_5xihs"]
 
 [node name="OrderBubble" type="Node2D" node_paths=PackedStringArray("bubbleSprite", "orderIcon")]
 scale = Vector2(0.5, 0.5)
@@ -18,10 +18,10 @@ texture = ExtResource("2_euvvx")
 [node name="OrderIcon" type="Sprite2D" parent="Bubble"]
 position = Vector2(-2.90909, -2.52631)
 scale = Vector2(0.8125, 0.94079)
-texture = ExtResource("2_5xihs")
+texture = ExtResource("3_5xihs")
 offset = Vector2(0, -4.06349)
-hframes = 6
-frame = 5
+hframes = 5
+vframes = 2
 
 [node name="OrderTimer" type="Timer" parent="."]
 wait_time = 2.0

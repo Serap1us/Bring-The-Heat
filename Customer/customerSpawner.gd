@@ -5,7 +5,7 @@ class_name CustomerSpawner
 
 # Spawner Settings
 @export var spawnInterval: float = 10
-@export var maxCustomers: int = 5 # max customers we can have in restaurant
+@export var maxCustomers: int = 10 # max customers we can have in restaurant
 @export var difficulty: float = 1.0 # increases over time
 
 # counter positions
@@ -22,7 +22,7 @@ var counterOccupancy: Dictionary = {}
 
 # signals
 signal customerArrived(customer: customerNPC, counterNode: Node)
-signal customerleft(customer: customerNPC, happy: bool)
+signal customerleft(customer: customerNPC)
 
 func _ready():
 	spawnTimer.wait_time = spawnInterval
@@ -74,15 +74,17 @@ func spawnCustomer():
 	
 	# adjust the patience based on difficulty
 	customer.maxPatience = randf_range(
-		max(5, (12.5 / difficulty)),
-		max(7.5, (17.5 / difficulty))
+		max(5, (30 / difficulty)),
+		max(7.5, (35 / difficulty))
 	)
 	
 	# connect the signals
 	customer.arrivedAtCounter.connect(
 		_on_customerArrived.bind(customer, counterNode)
 	)
-	customer.order_completed.connect(_on_customerLeft.bind(counterNode))
+	customer.order_completed.connect(
+		_on_customerLeft.bind(customer, counterNode)
+		)
 	
 	call_deferred("add_child", customer)
 	activeCustomers.append(customer)
@@ -92,7 +94,7 @@ func spawnCustomer():
 func _on_customerArrived(customer: customerNPC, counterNode: Node):
 	customerArrived.emit(customer, counterNode)
 	
-	var orderTypes = ["burger", "fries", "soda", "chicken"]
+	var orderTypes = ["patty", "chicken", "kebab", "pizza", "bread"]
 	var orders = []
 	
 	var numOrders = randi_range(1, roundi(difficulty))
@@ -103,11 +105,11 @@ func _on_customerArrived(customer: customerNPC, counterNode: Node):
 		orders.append(randomOrder)
 	customer.orderType = orders
 	
-func _on_customerLeft(customer: customerNPC, happy: bool, counterNode: Node):
+func _on_customerLeft(customer: customerNPC, counterNode: Node, points: int):
 	# free up the counter
 	counterOccupancy[counterNode] = null
 	activeCustomers.erase(customer)
-	customerleft.emit(customer, happy)
+	customerleft.emit(customer)
 
 
 func changeDifficulty(amount: float):

@@ -4,7 +4,8 @@ class_name MainLevel
 @export var curr_score := 0 : set = _set_score
 @onready var score_label = $Control/Score
 @onready var asp: AudioStreamPlayer = $music
-@onready var flame_scene = "res://Game Components/Interact Area/flame.tscn"
+@onready var flame_scene = preload("res://Game Components/Interact Area/flame.tscn")
+
 
 # game music
 var volume = -15
@@ -12,6 +13,7 @@ var volume = -15
 func _ready() -> void:
 	$CustomerSpawner.counterPositions = $Tables.get_children() as Array[Marker2D]
 	$CustomerSpawner.spawnPosition = $SpawnPoint.position
+	
 	
 	# Music
 	AudioServer.set_bus_volume_db(0, volume)

@@ -2,27 +2,31 @@
 
 [ext_resource type="Script" uid="uid://brdpt4pydnifo" path="res://Ingredients/ingredient.gd" id="1_g6pem"]
 [ext_resource type="PackedScene" uid="uid://dx4gy0d3vr72q" path="res://Game Components/Interact Area/throwableUI.tscn" id="2_17u5e"]
-[ext_resource type="Texture2D" uid="uid://vh32e8tl4tj0" path="res://Ingredients/Food1.webp" id="2_p4s65"]
+[ext_resource type="Texture2D" uid="uid://bgmwkljm3tmua" path="res://Ingredients/Food2.webp" id="2_bw60g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p4s65"]
 radius = 28.0713
 
 [node name="Ingredient" type="Area2D" node_paths=PackedStringArray("ui")]
 collision_layer = 2
+collision_mask = 2
 monitoring = false
 script = ExtResource("1_g6pem")
 ui = NodePath("ThrowableUi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.999999, 2)
 scale = Vector2(5, 5)
-texture = ExtResource("2_p4s65")
-hframes = 6
+texture = ExtResource("2_bw60g")
+hframes = 5
+vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 16)
 shape = SubResource("CircleShape2D_p4s65")
 
 [node name="ThrowableUi" parent="." instance=ExtResource("2_17u5e")]
+visible = false
 offset_left = -2.0
 offset_top = 16.0
 offset_right = -2.0

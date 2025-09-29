@@ -13,5 +13,5 @@ func _physics_process(delta: float) -> void:
 	if LivesCounter.lives == 1:
 		$Star4.hide()
 	if LivesCounter.lives == 0:
-		get_tree().reload_current_scene()
+		get_tree().change_scene_to_file("res://Game Over Menu/game_over_scene.tscn")
 		## game over scene
