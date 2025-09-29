@@ -6,7 +6,7 @@ class_name MainLevel
 @onready var asp: AudioStreamPlayer = $music
 @onready var flame_scene = preload("res://Game Components/Interact Area/flame.tscn")
 
-
+#print("hi")
 # game music
 var volume = -15
 
