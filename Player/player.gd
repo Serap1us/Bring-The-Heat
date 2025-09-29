@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var player_idx: int = 1 # player 1 = idx 1, player 2 = idx 2
 @onready var sprite = $Sprite2D
 @onready var arrow_sprite = $ArrowSprite
+@onready var interact_area = $"Interaction Components/InteractionArea/CollisionShape2D"
 
 ##An array that can only be filled with objects that inherit from Interactable
 @onready var all_interactions: Array [Interactable]
@@ -67,20 +68,36 @@ func get_movement_input():
 		match direction_faced:
 			"right":
 				arrow_sprite.rotation = PI
+				interact_area.position = Vector2(4.75, 2.75)
+				interact_area.rotation_degrees = 90
 			"down_right":
 				arrow_sprite.rotation = -3*PI/4
+				interact_area.position = Vector2(4.75, 2.75)
+				interact_area.rotation_degrees = -45
 			"down":
 				arrow_sprite.rotation = -PI/2
+				interact_area.position = Vector2(0.0, 8.0)
+				interact_area.rotation = 0
 			"down_left":
 				arrow_sprite.rotation = -PI/4
+				interact_area.position = Vector2(-2.75, 4.75)
+				interact_area.rotation_degrees = 45
 			"left":
 				arrow_sprite.rotation = 0 
+				interact_area.position = Vector2(-4.75, 2.75)
+				interact_area.rotation_degrees = 90
 			"up_left":
 				arrow_sprite.rotation = PI/4
+				interact_area.position = Vector2(-4.75, -2.75)
+				interact_area.rotation_degrees = -45
 			"up":
 				arrow_sprite.rotation = PI/2
+				interact_area.position = Vector2(0.0, -8.0)
+				interact_area.rotation = 0
 			"up_right":
 				arrow_sprite.rotation = 3*PI/4
+				interact_area.position = Vector2(-2.75, 4.75)
+				interact_area.rotation_degrees = 45
 	move_and_slide()
 
 # Use vectors to determine the sprite arrow direction

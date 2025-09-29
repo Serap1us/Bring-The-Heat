@@ -29,7 +29,6 @@ color = Color(0.455506, 0.344733, 0.0485584, 1)
 
 [node name="Pixel-recipe-card-stockcake" type="Sprite2D" parent="."]
 position = Vector2(640.889, 360)
-scale = Vector2(1, 1)
 texture = ExtResource("2_mojji")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]

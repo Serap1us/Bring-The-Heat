@@ -7,8 +7,9 @@
 radius = 3.75
 height = 12.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_q3lat"]
-radius = 16.7862
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q3lat"]
+radius = 5.75
+height = 22.5
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(4, 4)
@@ -21,7 +22,7 @@ hframes = 4
 
 [node name="ArrowSprite" type="Sprite2D" parent="."]
 position = Vector2(-0.924924, 1.43749)
-rotation = 3.14159
+rotation = -0.785398
 texture = ExtResource("2_q3lat")
 hframes = 4
 frame = 2
@@ -39,7 +40,9 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction Components/InteractionArea"]
-shape = SubResource("CircleShape2D_q3lat")
+position = Vector2(-2.75, 4.75)
+rotation = 0.785398
+shape = SubResource("CapsuleShape2D_q3lat")
 
 [node name="InteractLabel" type="Label" parent="Interaction Components"]
 anchors_preset = 8
