@@ -18,7 +18,7 @@ func _on_resume_btn_pressed() -> void:
 	
 	
 func _on_settings_btn_pressed() -> void:
-	pass # Replace with function body.
+	on_settings_pressed()
 
 
 func _on_quit_btn_pressed() -> void:

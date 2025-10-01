@@ -70,6 +70,7 @@ func execute(interact_player: Player):
 		follow_player(interact_player)
 		
 		is_picked_up = true
+		has_landed = true
 		
 		close_area()
 

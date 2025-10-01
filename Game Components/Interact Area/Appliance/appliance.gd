@@ -80,6 +80,8 @@ func execute(player: Player):
 func store_ingredient():
 	stored_food.unfollow_player()
 	
+	stored_food.has_landed = true
+	
 	stored_food.global_position = cook_point.global_position
 	
 	stored_food.close_area()
